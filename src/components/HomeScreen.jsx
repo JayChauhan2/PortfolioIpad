@@ -38,7 +38,7 @@ export default function HomeScreen({ apps, onOpenApp, currentApp }) {
           >
             {app.icon}
           </motion.div>
-          <span className="text-white/95 text-xs md:text-sm font-semibold tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] bg-black/10 backdrop-blur-sm px-2 py-0.5 rounded-full mt-1">
+          <span className="text-white/95 text-xs md:text-sm font-semibold tracking-wide drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)] mt-1">
             {app.name}
           </span>
         </motion.div>

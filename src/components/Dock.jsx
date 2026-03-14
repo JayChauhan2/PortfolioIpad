@@ -30,7 +30,7 @@ export default function Dock() {
             >
               {item.icon}
             </a>
-            <span className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white/95 text-xs md:text-sm font-semibold tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] bg-black/10 backdrop-blur-sm px-2 py-0.5 rounded-full whitespace-nowrap pointer-events-none z-20">
+            <span className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white/95 text-xs md:text-sm font-semibold tracking-wide drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)] whitespace-nowrap pointer-events-none z-20">
               {item.name}
             </span>
           </div>

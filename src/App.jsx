@@ -57,7 +57,7 @@ export default function App() {
   return (
     <div 
       className="w-full h-screen flex items-center justify-center relative overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2000&auto=format&fit=crop')" }}
+      style={{ backgroundImage: "url('https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&w=2000')" }}
     >
       {/* Subdued shadow overlay to sell the realism of the table surface */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
