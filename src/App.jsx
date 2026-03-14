@@ -65,7 +65,7 @@ export default function App() {
       {/* Subdued shadow overlay to sell the realism of the table surface */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
-      <IPadFrame>
+      <IPadFrame onHomeClick={handleCloseApp}>
         <StatusBar theme={statusTheme} />
         
         {/* Subtle Status Bar Gradient for readability */}
@@ -80,6 +80,21 @@ export default function App() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {isLocked && (
+            <motion.div
+              key="lockscreen-shadows"
+              className="absolute inset-0 pointer-events-none z-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeOut' } }}
+            >
+              <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </motion.div>
           )}
         </AnimatePresence>
 
@@ -105,22 +120,16 @@ export default function App() {
         <AnimatePresence>
           {currentApp && ActiveApp && (
             <motion.div
-              className={`absolute inset-0 z-[60] flex flex-col shadow-2xl overflow-hidden rounded-[2rem] ${ActiveAppBg}`}
+              className={`absolute inset-0 z-[60] flex flex-col shadow-2xl overflow-hidden ${ActiveAppBg}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.15 } }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {/* App Content */}
-              <div className="w-full h-full relative overflow-hidden" style={{ borderRadius: 32 }}>
+              <div className="w-full h-full relative overflow-hidden bg-transparent">
                 <ActiveApp onClose={handleCloseApp} />
               </div>
-
-              {/* Home Bar for App closing */}
-              <div 
-                className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1.5 rounded-full z-[100] cursor-pointer hover:w-40 transition-all duration-300 ${statusTheme === 'dark' ? 'bg-white/40 hover:bg-white/60' : 'bg-black/40 hover:bg-black/60'}`}
-                onClick={handleCloseApp}
-              ></div>
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,6 +1,6 @@
 import { useWindowSize } from "../hooks/useWindowSize";
 
-export default function IPadFrame({ children }) {
+export default function IPadFrame({ children, onHomeClick }) {
   const { width, height } = useWindowSize();
   
   // Base iPad dimensions (iPad Pro 11-inch roughly 834x1194, landscape is 1194x834)
@@ -28,13 +28,21 @@ export default function IPadFrame({ children }) {
           transition: 'transform 0.2s ease-out'
         }}
       >
-        {/* Inner Black Bezel */}
-        <div className="w-full h-full bg-black rounded-[2.5rem] relative p-[12px] shadow-inner">
+        {/* Inner Black Bezel - Asymmetrical padding for classic layout */}
+        <div className="w-full h-full bg-black rounded-[2.5rem] relative pb-[52px] pt-[20px] px-[20px] shadow-inner">
           
           <div 
-            className="w-full h-full bg-slate-900 relative overflow-hidden rounded-[2rem] bg-[url('/background.png')] bg-cover bg-center"
+            className="w-full h-full bg-slate-900 relative overflow-hidden rounded-[4px] bg-[url('/background.png')] bg-cover bg-center"
           >
             {children}
+          </div>
+
+          {/* Classic Hardware Home Button */}
+          <div 
+            className="absolute bottom-[6px] left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-[#111] border-[1.5px] border-[#222] shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] cursor-pointer flex items-center justify-center hover:bg-[#151515] active:bg-[#000] transition-colors group"
+            onClick={onHomeClick}
+          >
+            <div className="w-3.5 h-3.5 rounded-[4px] border-[1.5px] border-[#444] group-active:border-[#333] transition-colors"></div>
           </div>
         </div>
       </div>

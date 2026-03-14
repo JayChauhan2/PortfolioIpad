@@ -34,10 +34,6 @@ export default function LockScreen({ onUnlock }) {
         <p className="text-white/90 text-sm font-medium tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2">Swipe up or click to unlock</p>
         <div className="w-32 h-1.5 bg-white/50 rounded-full"></div>
       </motion.div>
-
-      {/* Lockscreen Gradients for Readability */}
-      <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-black/50 to-transparent pointer-events-none z-10"></div>
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
     </motion.div>
   );
 }
