@@ -16,27 +16,27 @@ const APPS = [
   { 
     id: 'photos', name: 'Photos', 
     icon: <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Photos_icon_for_OS_X.png" alt="Photos" className="w-full h-full object-cover" />, 
-    color: 'bg-white', component: PhotosApp 
+    appBg: 'bg-black', component: PhotosApp 
   },
   { 
     id: 'contacts', name: 'Contacts', 
     icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c3/e0/9d/c3e09d8c-fb97-f0be-8463-b011f602c53a/contacts-0-0-1x_U007epad-0-1-0-sRGB-0-85-220.png/512x512bb.jpg" alt="Contacts" className="w-full h-full object-cover" />, 
-    color: 'bg-white', component: ContactsApp 
+    appBg: 'bg-gray-50', component: ContactsApp 
   },
   { 
     id: 'projects', name: 'Projects', 
     icon: <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="Projects" className="w-full h-full object-cover" />, 
-    color: 'bg-white', component: ProjectsApp 
+    appBg: 'bg-white', component: ProjectsApp 
   },
   { 
     id: 'organizations', name: 'Organizations', 
     icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/cf/a1/e7/cfa1e733-abf2-2a89-394f-1de4a5043743/files-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg" alt="Organizations" className="w-full h-full object-cover" />, 
-    color: 'bg-white', component: OrganizationsApp 
+    appBg: 'bg-gray-50', component: OrganizationsApp 
   },
   { 
     id: 'awards', name: 'Awards', 
     icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c2/82/bc/c282bc4d-7d60-1c41-3282-1d9accecf0bd/tips-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg" alt="Tips" className="w-full h-full object-cover" />, 
-    color: 'bg-white', component: AwardsApp 
+    appBg: 'bg-slate-900', component: AwardsApp 
   },
 ];
 
@@ -53,6 +53,7 @@ export default function App() {
   };
 
   const ActiveApp = APPS.find((app) => app.id === currentApp)?.component;
+  const ActiveAppBg = APPS.find((app) => app.id === currentApp)?.appBg || 'bg-white';
   const isDarkApp = currentApp === 'awards' || currentApp === 'photos';
   const statusTheme = (!currentApp || isDarkApp) ? 'dark' : 'light';
 
@@ -104,7 +105,7 @@ export default function App() {
         <AnimatePresence>
           {currentApp && ActiveApp && (
             <motion.div
-              className={`absolute inset-0 z-[60] flex flex-col shadow-2xl overflow-hidden rounded-[2rem] bg-transparent`}
+              className={`absolute inset-0 z-[60] flex flex-col shadow-2xl overflow-hidden rounded-[2rem] ${ActiveAppBg}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.15 } }}
@@ -117,7 +118,7 @@ export default function App() {
 
               {/* Home Bar for App closing */}
               <div 
-                className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1.5 bg-black/40 dark:bg-white/40 rounded-full z-[100] cursor-pointer hover:bg-black/60 transition-colors"
+                className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1.5 rounded-full z-[100] cursor-pointer hover:w-40 transition-all duration-300 ${statusTheme === 'dark' ? 'bg-white/40 hover:bg-white/60' : 'bg-black/40 hover:bg-black/60'}`}
                 onClick={handleCloseApp}
               ></div>
             </motion.div>

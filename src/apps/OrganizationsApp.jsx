@@ -14,10 +14,7 @@ export default function OrganizationsApp({ onClose }) {
       <div className="flex items-center justify-between px-4 pb-3 pt-10 border-b border-gray-200 bg-white shadow-sm z-10">
         <div className="flex items-center gap-4">
           <span className="text-blue-500 font-medium cursor-pointer" onClick={onClose}>&lt; Browse</span>
-          <span className="font-semibold text-sm">On My iPad</span>
-        </div>
-        <div className="flex gap-4 text-blue-500">
-          <span className="cursor-pointer">Select</span>
+          <span className="font-semibold text-sm">Accepted</span>
         </div>
       </div>
       
@@ -29,13 +26,10 @@ export default function OrganizationsApp({ onClose }) {
             <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Locations</h3>
             <ul className="space-y-1">
               <li className="flex items-center gap-2 px-2 py-1 bg-cyan-100 text-cyan-900 rounded-md font-medium text-sm">
-                <span className="text-blue-500">💻</span> On My iPad
+                <span className="text-blue-500">💻</span> Accepted
               </li>
               <li className="flex items-center gap-2 px-2 py-1 text-gray-700 hover:bg-gray-200 rounded-md font-medium text-sm">
-                <span className="text-blue-400">☁️</span> iCloud Drive
-              </li>
-              <li className="flex items-center gap-2 px-2 py-1 text-gray-700 hover:bg-gray-200 rounded-md font-medium text-sm">
-                <span className="text-gray-400">🗑️</span> Recently Deleted
+                <span className="text-red-400">☁️</span> Rejected
               </li>
             </ul>
           </div>
