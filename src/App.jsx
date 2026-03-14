@@ -53,6 +53,8 @@ export default function App() {
   };
 
   const ActiveApp = APPS.find((app) => app.id === currentApp)?.component;
+  const isDarkApp = currentApp === 'awards' || currentApp === 'photos';
+  const statusTheme = (!currentApp || isDarkApp) ? 'dark' : 'light';
 
   return (
     <div 
@@ -63,7 +65,7 @@ export default function App() {
       <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
       <IPadFrame>
-        <StatusBar />
+        <StatusBar theme={statusTheme} />
         
         {/* Subtle Status Bar Gradient for readability */}
         <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-40"></div>
@@ -102,7 +104,7 @@ export default function App() {
         <AnimatePresence>
           {currentApp && ActiveApp && (
             <motion.div
-              className="absolute inset-0 z-[60] bg-white flex flex-col shadow-2xl overflow-hidden rounded-[2rem]"
+              className={`absolute inset-0 z-[60] flex flex-col shadow-2xl overflow-hidden rounded-[2rem] bg-transparent`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.15 } }}

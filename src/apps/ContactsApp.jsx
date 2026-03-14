@@ -4,7 +4,7 @@ export default function ContactsApp({ onClose }) {
   return (
     <div className="w-full h-full flex flex-col bg-gray-50 text-black relative">
       {/* Top Navigation Bar */}
-      <div className="w-full px-6 py-4 flex justify-between items-center bg-white/50 backdrop-blur-md border-b border-gray-200 sticky top-0 z-10">
+      <div className="w-full px-6 pt-10 pb-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-10">
         <span className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1" onClick={onClose}>
           &lt; Back
         </span>
@@ -14,8 +14,8 @@ export default function ContactsApp({ onClose }) {
       
       {/* Centered Content Area */}
       <div className="flex-1 w-full flex flex-col pt-10 pb-16 items-center overflow-y-auto">
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 border-4 border-white shadow-lg flex items-center justify-center text-white text-3xl font-bold mb-4">
-          J
+        <div className="w-24 h-24 rounded-full border-4 border-white shadow-lg flex items-center justify-center overflow-hidden mb-4 bg-gray-100">
+          <img src="/MyProfile.png" alt="Jay Chauhan" className="w-full h-full object-cover" />
         </div>
         <h2 className="text-3xl font-semibold mb-6">Jay (You)</h2>
         

@@ -11,7 +11,7 @@ export default function OrganizationsApp({ onClose }) {
   return (
     <div className="w-full h-full flex flex-col bg-gray-50 text-black">
       {/* Top Navigation */}
-      <div className="h-14 flex items-center justify-between px-4 border-b border-gray-200 bg-white shadow-sm z-10 pt-4">
+      <div className="flex items-center justify-between px-4 pb-3 pt-10 border-b border-gray-200 bg-white shadow-sm z-10">
         <div className="flex items-center gap-4">
           <span className="text-blue-500 font-medium cursor-pointer" onClick={onClose}>&lt; Browse</span>
           <span className="font-semibold text-sm">On My iPad</span>
