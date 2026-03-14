@@ -48,8 +48,12 @@ export default function App() {
     setCurrentApp(appId);
   };
 
-  const handleCloseApp = () => {
-    setCurrentApp(null);
+  const handleHomeButton = () => {
+    if (isLocked) {
+      setIsLocked(false);
+    } else {
+      setCurrentApp(null);
+    }
   };
 
   const ActiveApp = APPS.find((app) => app.id === currentApp)?.component;
@@ -65,7 +69,7 @@ export default function App() {
       {/* Subdued shadow overlay to sell the realism of the table surface */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
-      <IPadFrame onHomeClick={handleCloseApp}>
+      <IPadFrame onHomeClick={handleHomeButton}>
         <StatusBar theme={statusTheme} />
         
         {/* Subtle Status Bar Gradient for readability */}
@@ -130,7 +134,7 @@ export default function App() {
             >
               {/* App Content */}
               <div className="w-full h-full relative overflow-hidden bg-transparent">
-                <ActiveApp onClose={handleCloseApp} />
+                <ActiveApp onClose={handleHomeButton} />
               </div>
             </motion.div>
           )}
