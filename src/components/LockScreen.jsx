@@ -21,7 +21,7 @@ export default function LockScreen({ onUnlock }) {
     >
       <div className="flex flex-col items-center mt-12 z-20">
         <h2 className="text-white/90 text-2xl font-medium mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{dateString}</h2>
-        <h1 className="text-white text-8xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+        <h1 className="text-white text-7xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
           {timeString}
         </h1>
       </div>

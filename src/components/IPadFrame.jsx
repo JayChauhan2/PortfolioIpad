@@ -32,7 +32,7 @@ export default function IPadFrame({ children, onHomeClick }) {
         <div className="w-full h-full bg-black rounded-[2.5rem] relative pb-[52px] pt-[20px] px-[20px] shadow-inner">
           
           <div 
-            className="w-full h-full bg-slate-900 relative overflow-hidden rounded-[4px] bg-[url('/background.png')] bg-cover bg-center"
+            className="w-full h-full bg-slate-900 relative overflow-hidden rounded-[1.5rem] bg-[url('/background.png')] bg-cover bg-center"
           >
             {children}
           </div>
