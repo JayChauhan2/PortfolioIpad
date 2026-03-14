@@ -13,7 +13,12 @@ export default function OrganizationsApp({ onClose }) {
       {/* Top Navigation */}
       <div className="flex items-center justify-between px-4 pb-3 pt-10 border-b border-gray-200 bg-white shadow-sm z-10">
         <div className="flex items-center gap-4">
-          <span className="text-blue-500 font-medium cursor-pointer" onClick={onClose}>&lt; Browse</span>
+          <button 
+            className="text-blue-500 font-medium cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1" 
+            onClick={onClose}
+          >
+            &lt; Browse
+          </button>
           <span className="font-semibold text-sm">Accepted</span>
         </div>
       </div>
@@ -25,10 +30,16 @@ export default function OrganizationsApp({ onClose }) {
           <div className="px-4 py-2">
             <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Locations</h3>
             <ul className="space-y-1">
-              <li className="flex items-center gap-2 px-2 py-1 bg-cyan-100 text-cyan-900 rounded-md font-medium text-sm">
+              <li 
+                className="flex items-center gap-2 px-2 py-1 bg-cyan-100 text-cyan-900 rounded-md font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                tabIndex={0}
+              >
                 <span className="text-blue-500">💻</span> Accepted
               </li>
-              <li className="flex items-center gap-2 px-2 py-1 text-gray-700 hover:bg-gray-200 rounded-md font-medium text-sm">
+              <li 
+                className="flex items-center gap-2 px-2 py-1 text-gray-700 hover:bg-gray-200 rounded-md font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                tabIndex={0}
+              >
                 <span className="text-red-400">☁️</span> Rejected
               </li>
             </ul>
@@ -40,7 +51,11 @@ export default function OrganizationsApp({ onClose }) {
           <h1 className="text-2xl font-bold mb-6">Organizations</h1>
           <div className="grid grid-cols-4 gap-6">
             {orgs.map((org) => (
-              <div key={org.id} className="flex flex-col items-center gap-2 cursor-pointer group">
+              <button 
+                key={org.id} 
+                className="flex flex-col items-center gap-2 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg p-2 transition-all"
+                aria-label={`${org.type === "folder" ? "Folder" : "File"}: ${org.name}`}
+              >
                 {org.type === "folder" ? (
                   <div className="relative">
                     <FolderIcon size={80} className="text-blue-400 group-hover:text-blue-500 transition-colors" fill="currentColor" />
@@ -52,7 +67,7 @@ export default function OrganizationsApp({ onClose }) {
                 )}
                 <span className="text-sm font-medium text-center line-clamp-2 max-w-[100px]">{org.name}</span>
                 {org.role && <span className="text-xs text-gray-400 -mt-1">{org.duration}</span>}
-              </div>
+              </button>
             ))}
           </div>
         </div>

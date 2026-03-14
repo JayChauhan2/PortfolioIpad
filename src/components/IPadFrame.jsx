@@ -39,8 +39,16 @@ export default function IPadFrame({ children, onHomeClick }) {
 
           {/* Classic Hardware Home Button */}
           <div 
-            className="absolute bottom-[6px] left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-[#111] border-[1.5px] border-[#222] shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] cursor-pointer flex items-center justify-center hover:bg-[#151515] active:bg-[#000] transition-colors group"
+            className="absolute bottom-[6px] left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-[#111] border-[1.5px] border-[#222] shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] cursor-pointer flex items-center justify-center hover:bg-[#151515] active:bg-[#000] transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             onClick={onHomeClick}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                onHomeClick();
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-label="Home"
           >
             <div className="w-3.5 h-3.5 rounded-[4px] border-[1.5px] border-[#444] group-active:border-[#333] transition-colors"></div>
           </div>

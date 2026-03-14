@@ -24,14 +24,20 @@ export default function HomeScreen({ apps, onOpenApp, currentApp }) {
       animate="show"
     >
       {apps.map((app) => (
-        <motion.div 
+        <motion.button 
           key={app.id} 
           variants={itemVariants}
-          className="flex flex-col items-center gap-2 cursor-pointer"
+          className="flex flex-col items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:rounded-xl p-1 transition-all"
           onClick={() => onOpenApp(app.id)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              onOpenApp(app.id);
+            }
+          }}
+          aria-label={`Open ${app.name} app`}
         >
           <motion.div 
-            className={`w-16 h-16 md:w-[72px] md:h-[72px] flex items-center justify-center shadow-lg transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] overflow-hidden cursor-pointer hover:scale-[1.10] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:z-20 ${app.color}`}
+            className={`w-16 h-16 md:w-[72px] md:h-[72px] flex items-center justify-center shadow-lg transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] overflow-hidden hover:scale-[1.10] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:z-20 ${app.color}`}
             style={{ 
               borderRadius: 16
             }}
@@ -41,7 +47,7 @@ export default function HomeScreen({ apps, onOpenApp, currentApp }) {
           <span className="text-white/95 text-xs md:text-sm font-semibold tracking-wide drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)] mt-1">
             {app.name}
           </span>
-        </motion.div>
+        </motion.button>
       ))}
     </motion.div>
   );

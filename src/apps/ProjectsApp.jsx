@@ -30,7 +30,7 @@ export default function ProjectsApp() {
                   <p className="text-sm text-gray-500">{proj.description}</p>
                 </div>
               </div>
-              <button className="bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors">
+              <button className="bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                 GET
               </button>
             </div>

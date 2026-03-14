@@ -108,6 +108,8 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
+              inert={currentApp ? "" : undefined}
+              aria-hidden={!!currentApp}
             >
               {/* Home Screen App Grid */}
               <HomeScreen apps={APPS} onOpenApp={handleOpenApp} currentApp={currentApp} />

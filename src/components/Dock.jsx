@@ -25,8 +25,9 @@ export default function Dock() {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-[60px] h-[60px] md:w-[68px] md:h-[68px] rounded-[22.5%] flex items-center justify-center shadow-md hover:scale-[1.10] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] cursor-pointer z-10 ${item.bg}`}
+              className={`w-[60px] h-[60px] md:w-[68px] md:h-[68px] rounded-[22.5%] flex items-center justify-center shadow-md hover:scale-[1.10] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] cursor-pointer z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:scale-[1.10] ${item.bg}`}
               title={item.name}
+              aria-label={`Open ${item.name}`}
             >
               {item.icon}
             </a>

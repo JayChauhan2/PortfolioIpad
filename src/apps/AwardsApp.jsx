@@ -17,7 +17,11 @@ export default function AwardsApp() {
 
       <div className="grid grid-cols-2 gap-6">
         {awards.map((award) => (
-          <div key={award.id} className="bg-slate-800 rounded-3xl p-6 flex flex-col items-center justify-center text-center gap-4 border border-slate-700 shadow-xl hover:bg-slate-700/80 transition-colors cursor-pointer group">
+          <button 
+            key={award.id} 
+            className="bg-slate-800 rounded-3xl p-6 flex flex-col items-center justify-center text-center gap-4 border border-slate-700 shadow-xl hover:bg-slate-700/80 transition-colors cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            aria-label={`Award: ${award.title} from ${award.organization}`}
+          >
             <div className="w-24 h-24 rounded-full bg-slate-900 border-4 border-slate-700 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
               {award.icon}
             </div>
@@ -28,7 +32,7 @@ export default function AwardsApp() {
             <div className="px-4 py-1 bg-slate-900 rounded-full text-xs font-bold text-slate-500 tracking-widest mt-2 border border-slate-700">
               {award.year}
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </div>

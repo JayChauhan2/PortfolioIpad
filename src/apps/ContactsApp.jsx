@@ -5,11 +5,15 @@ export default function ContactsApp({ onClose }) {
     <div className="w-full h-full flex flex-col bg-gray-50 text-black relative">
       {/* Top Navigation Bar */}
       <div className="w-full px-6 pt-10 pb-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-10">
-        <span className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1" onClick={onClose}>
+        <button 
+          className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1" 
+          onClick={onClose}
+          aria-label="Back to Browse"
+        >
           &lt; Back
-        </span>
+        </button>
         <span className="font-semibold text-lg">Jay's Card</span>
-        <span className="text-blue-500 font-medium text-lg w-16 text-right">Edit</span>
+        <button className="text-blue-500 font-medium text-lg w-16 text-right focus:outline-none focus:text-blue-700">Edit</button>
       </div>
       
       {/* Centered Content Area */}
@@ -28,7 +32,10 @@ export default function ContactsApp({ onClose }) {
                 <p className="text-blue-500">JayChauhan3@gmail.com</p>
               </div>
             </div>
-            <button className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors opacity-0 group-hover:opacity-100 active:scale-95 cursor-pointer">
+            <button 
+              className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 active:scale-95 cursor-pointer"
+              aria-label="Copy email address"
+            >
               <Copy size={18} />
             </button>
           </div>

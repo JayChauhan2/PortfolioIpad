@@ -4,7 +4,7 @@ export default function PhotosApp() {
       <h1 className="text-3xl font-bold mb-6 text-black">Photos</h1>
       <div className="grid grid-cols-3 gap-2">
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="aspect-square bg-gray-200 rounded-md animate-pulse"></div>
+          <button key={i} className="aspect-square bg-gray-200 rounded-md animate-pulse focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"></button>
         ))}
       </div>
     </div>
