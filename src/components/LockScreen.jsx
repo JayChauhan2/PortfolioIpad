@@ -14,9 +14,9 @@ export default function LockScreen({ onUnlock }) {
 
   return (
     <motion.div 
-      className="absolute inset-0 z-50 flex flex-col items-center justify-between py-12 cursor-default bg-black/10 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+      className="absolute inset-0 z-50 flex flex-col items-center justify-between py-12 cursor-default bg-black/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
       initial={{ y: 0, opacity: 1 }}
-      exit={{ y: '-100%', opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
+      exit={{ y: '-100%', opacity: 0, transition: { duration: 0.7, ease: [0.32, 0.72, 0, 1] } }}
       onClick={onUnlock}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {

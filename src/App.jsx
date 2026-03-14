@@ -111,7 +111,7 @@ export default function App() {
               className="absolute inset-0 pt-8 px-8 z-10"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
               inert={currentApp ? "" : undefined}
               aria-hidden={!!currentApp}
             >

@@ -30,6 +30,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #000;
   overflow: hidden;
+  cursor: url('/cursor.png'), auto;
+}
+
+button, a, [role="button"], .cursor-pointer {
+  cursor: url('/cursor.png'), pointer !important;
 }
 
 #root {
