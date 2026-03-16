@@ -121,10 +121,12 @@ export default function OrganizationsApp({ onClose }) {
 
   const rejectedOrgs = [
     { id: 101, name: "SPARC" },
-    { id: 102, name: "Rockefeller University SSRP" },
-    { id: 103, name: "University of Pennsylvania" },
-    { id: 104, name: "MIT Blueprint" },
     { id: 105, name: "Artifact Accelerator (Founders Inc.)" },
+    { id: 104, name: "MIT Blueprint" },
+    { id: 102, name: "Rockefeller University SSRP" },
+    { id: 106, name: "MIT" },
+    { id: 103, name: "University of Pennsylvania" },
+    { id: 107, name: "Carnegie Mellon" },
   ];
 
   const toggleAccordion = (id) => {
@@ -161,8 +163,8 @@ export default function OrganizationsApp({ onClose }) {
               <button
                 onClick={() => setActiveView('accepted')}
                 className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${activeView === 'accepted'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-bold'
-                    : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-bold'
+                  : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
                   }`}
               >
                 <Briefcase size={20} />
@@ -172,8 +174,8 @@ export default function OrganizationsApp({ onClose }) {
               <button
                 onClick={() => setActiveView('rejected')}
                 className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${activeView === 'rejected'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-bold'
-                    : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-bold'
+                  : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
                   }`}
               >
                 <FolderIcon size={20} />
@@ -192,7 +194,7 @@ export default function OrganizationsApp({ onClose }) {
                   <FileText size={22} />
                 </div>
                 <div className="text-left">
-                  <p className="text-lg font-bold text-gray-900">Resume.pdf</p>
+                  <p className="text-lg font-bold text-gray-900">Résumé</p>
                   <p className="text-sm text-gray-400 font-medium">External Link</p>
                 </div>
               </div>
@@ -221,21 +223,19 @@ export default function OrganizationsApp({ onClose }) {
                   {acceptedOrgs.map((org) => (
                     <div key={org.id} className="relative">
                       {/* Timeline Dot */}
-                      <div className="absolute -left-[31px] top-8 w-6 h-6 rounded-full bg-white border-4 border-blue-500 z-10 flex items-center justify-center shadow-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                      </div>
+                      <div className="absolute -left-[32px] top-9 w-5 h-5 rounded-full bg-gray-300 border-4 border-white z-10 shadow-sm"></div>
 
                       {/* Experience Card */}
-                      <div 
+                      <div
                         onClick={() => toggleAccordion(org.id)}
                         className={`cursor-pointer bg-white p-6 rounded-2xl border border-gray-100 transition-all duration-300 hover:shadow-lg ${expandedId === org.id ? 'shadow-md border-blue-100' : ''}`}
                       >
                         <div className="flex items-start justify-between gap-6">
                           <div className="flex items-center gap-6">
                             <div className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 flex-shrink-0 p-2 flex items-center justify-center">
-                              <img 
-                                src={org.image} 
-                                alt={org.name} 
+                              <img
+                                src={org.image}
+                                alt={org.name}
                                 className="w-full h-full object-contain transition-all"
                                 onError={(e) => { e.target.src = `https://via.placeholder.com/150/f1f5f9/64748b?text=${org.name[0]}`; }}
                               />
@@ -274,7 +274,7 @@ export default function OrganizationsApp({ onClose }) {
               </div>
             </div>
           ) : (
-            <div className="p-8 max-w-2xl mx-auto h-full flex flex-col pt-16 items-start text-left">
+            <div className="p-8 max-w-2xl mx-auto flex flex-col pt-16 items-start text-left">
               <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Rejected from</h1>
               <p className="text-xl text-gray-500 font-medium leading-relaxed mb-12">
                 Every setback becomes a reminder to keep trying harder the next time.
@@ -282,8 +282,8 @@ export default function OrganizationsApp({ onClose }) {
 
               <div className="w-full bg-white/70 backdrop-blur-lg rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
                 {rejectedOrgs.map((org, index) => (
-                  <div 
-                    key={org.id} 
+                  <div
+                    key={org.id}
                     className={`p-6 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
                   >
                     <h4 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
