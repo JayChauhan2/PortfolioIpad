@@ -95,7 +95,7 @@ export default function AwardsApp() {
       organization: "",
       year: "2025",
       image: "/CongressionalApp.png",
-      description: "Fine-tuned AI model (38K+ words) for Veterans with PTSD. Recognized as a national winner for innovation and technical excellence. Press: https://wittman.house.gov/news/documentsingle.aspx?DocumentID=6713"
+      description: "Fine-tuned AI model (38K+ words) for Veterans with PTSD, addressing gap for 15.8 million veterans. Press: https://wittman.house.gov/news/documentsingle.aspx?DocumentID=6713"
     },
     {
       id: 3,
@@ -103,7 +103,7 @@ export default function AwardsApp() {
       organization: "",
       year: "2026",
       image: "/tsa_pin.png",
-      description: "Designed outer space-themed pin to represent Virginia at TSA's national conference. The design was produced and sold out at the national event."
+      description: "Designed outer space-themed pin to represent Virginia at the Technology Student Association's national conference. The design was produced and sold out at the national event."
     },
   ];
 
@@ -157,7 +157,7 @@ export default function AwardsApp() {
       {init && (
         <Particles id="tsparticles" options={particlesOptions} />
       )}
-      
+
       <div className="max-w-3xl mx-auto w-full relative z-10">
         <header className="mb-14">
           <motion.div
