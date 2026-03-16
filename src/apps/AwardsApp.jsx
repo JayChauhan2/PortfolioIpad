@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronDown } from 'lucide-react';
+import tedTalkImg from '../assets/TEDTalk.png';
+import congressionalImg from '../assets/congressional_app.png';
+import tsaPinImg from '../assets/tsa_pin.png';
 
 const AwardCard = ({ award }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -25,7 +28,9 @@ const AwardCard = ({ award }) => {
         <div className="p-8 pb-6 flex items-center justify-between">
           <div className="flex-1 min-w-0 pr-4">
             <h3 className="text-3xl font-bold text-gray-900 tracking-tight mb-2 group-hover:text-[#B38728] transition-colors">{award.title}</h3>
-            <p className="text-gray-500 text-lg font-medium tracking-wide">{award.organization} • {award.year}</p>
+            <p className="text-gray-500 text-lg font-medium tracking-wide">
+              {award.organization ? `${award.organization} • ` : ''}{award.year}
+            </p>
           </div>
           
           <div className="p-4 bg-gray-50 rounded-full group-hover:bg-[#FCF6BA]/30 transition-colors shadow-sm">
@@ -59,35 +64,42 @@ export default function AwardsApp() {
   const featuredAwards = [
     { 
       id: 1, 
-      title: "Employee of the Year", 
-      organization: "Tech Corp Inc.", 
-      year: "2023", 
-      image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=compress&cs=tinysrgb&w=1200",
-      description: "Recognized for exceptional leadership in spearheading the migration to cloud-native infrastructure, resulting in a 40% reduction in operational costs. Demonstrated unwavering commitment to team growth and technical excellence throughout the fiscal year."
+      title: "TEDx Youth Speaker", 
+      organization: "", 
+      year: "2026", 
+      image: tedTalkImg,
+      description: "Presented TED talk on AI and student entrepreneurship. To prepare, I created an Agentic-AI website that would curate speeches from past TED Talks. Site: https://tedtalkbrowser.vercel.app/ - Watch speech: https://youtu.be/1JXjNWVFe5E?si=SeiPdKm59BS7bOis&t=57"
     },
     { 
       id: 2, 
-      title: "Global Hackathon Winner", 
-      organization: "DevFest 2022", 
-      year: "2022", 
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=compress&cs=tinysrgb&w=1200",
-      description: "Secured first place among 200+ global teams by building 'EcoPulse', an AI-driven platform for real-time carbon footprint tracking. The project was praised by judges for its intuitive interface and high-impact potential for corporate sustainability."
+      title: "Congressional App Challenge", 
+      organization: "", 
+      year: "2025", 
+      image: congressionalImg,
+      description: "Fine-tuned AI model (38K+ words) for Veterans with PTSD. Recognized as a national winner for innovation and technical excellence. Press: https://wittman.house.gov/news/documentsingle.aspx?DocumentID=6713"
     },
     { 
       id: 3, 
-      title: "Open Source Contributor", 
-      organization: "React Foundation", 
-      year: "2021", 
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=compress&cs=tinysrgb&w=1200",
-      description: "Contributed critical performance optimizations to the core rendering engine of React 18. Consistently provided high-quality code reviews and documentation updates, helping foster a collaborative and inclusive community for thousands of developers."
+      title: "National Pin Designer for Virginia TSA", 
+      organization: "", 
+      year: "2026", 
+      image: tsaPinImg,
+      description: "Designed outer space-themed pin to represent Virginia at TSA's national conference. The design was produced and sold out at the national event."
     },
   ];
 
   const otherAwards = [
-    { id: 4, title: "Dean's Honor List", organization: "Stanford University", year: "2020" },
-    { id: 5, title: "Best Design Concept", organization: "Design Insider", year: "2019" },
-    { id: 6, title: "Community Leader", organization: "Code for Good", year: "2018" },
-    { id: 7, title: "Mathematics Olympiad", organization: "National Math Soc.", year: "2017" },
+    { id: 8, title: "Top 2% Global Finalist", organization: "World AI Competition for Youth", year: "2025" },
+    { id: 4, title: "Semifinalist", organization: "Diamond Challenge", year: "2026" },
+    { id: 5, title: "1st Place - Virginia TSA Regional Video Game Design Competition", organization: "Technology Student Association", year: "2025" },
+    { id: 6, title: "Top 3 - Virginia TSA Software Development Competition", organization: "Technology Student Association", year: "2025" },
+    { id: 7, title: "Top 3 - Virginia TSA Virtual Reality Simulation Competition", organization: "Technology Student Association", year: "2025" },
+    { id: 12, title: "Top 10 - Virginia TSA Geospatial Technology", organization: "Technology Student Association", year: "2024" },
+    { id: 13, title: "1st Place - Virginia TSA Animatronics Competition", organization: "Technology Student Association (TSA)", year: "2023" },
+    { id: 14, title: "National Outstanding Academic Achievement Award", organization: "CollegeBoard", year: "2024" },
+    { id: 11, title: "2x National AP Scholar with Distinction Award", organization: "CollegeBoard", year: "2024" },
+    { id: 10, title: "CIT Scholar Award", organization: "Deep Run High School", year: "2024" },
+    { id: 9, title: "Principal's Scholar Award", organization: "Deep Run High School", year: "2024" },
   ];
 
   return (
@@ -100,7 +112,7 @@ export default function AwardsApp() {
             className="mb-4"
           >
             <h1 className="text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent">
-              Honors
+              Honors & Awards
             </h1>
           </motion.div>
           <p className="text-gray-400 text-xl ml-1 font-medium tracking-wide">Some of my proudest accomplishments.</p>
