@@ -77,7 +77,7 @@ function AppIcon({ app, onOpenApp }) {
 export default function HomeScreen({ apps, onOpenApp, currentApp }) {
   return (
     <motion.div 
-      className="grid grid-cols-4 md:grid-cols-5 gap-6 gap-y-8 mt-12 w-full max-w-4xl mx-auto z-10 px-4"
+      className="grid grid-cols-4 gap-6 gap-y-8 mt-12 w-full max-w-3xl mx-auto z-10 px-4"
       variants={containerVariants}
       initial="hidden"
       animate="show"

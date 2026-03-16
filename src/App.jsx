@@ -6,18 +6,12 @@ import StatusBar from './components/StatusBar';
 import LockScreen from './components/LockScreen';
 import Dock from './components/Dock';
 import HomeScreen from './components/HomeScreen';
-import PhotosApp from './apps/PhotosApp';
 import ContactsApp from './apps/ContactsApp';
 import ProjectsApp from './apps/ProjectsApp';
 import OrganizationsApp from './apps/OrganizationsApp';
 import AwardsApp from './apps/AwardsApp';
 
 const APPS = [
-  {
-    id: 'photos', name: 'Photos',
-    icon: <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Photos_icon_for_OS_X.png" alt="Photos" className="w-full h-full object-cover" />,
-    appBg: 'bg-black', component: PhotosApp
-  },
   {
     id: 'contacts', name: 'Contacts',
     icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c3/e0/9d/c3e09d8c-fb97-f0be-8463-b011f602c53a/contacts-0-0-1x_U007epad-0-1-0-sRGB-0-85-220.png/512x512bb.jpg" alt="Contacts" className="w-full h-full object-cover" />,
@@ -58,8 +52,7 @@ export default function App() {
 
   const ActiveApp = APPS.find((app) => app.id === currentApp)?.component;
   const ActiveAppBg = APPS.find((app) => app.id === currentApp)?.appBg || 'bg-white';
-  const isDarkApp = currentApp === 'photos';
-  const statusTheme = (!currentApp) ? 'dark' : (isDarkApp ? 'dark' : 'light');
+  const statusTheme = (!currentApp) ? 'dark' : 'light';
 
   return (
     <div
