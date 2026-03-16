@@ -101,9 +101,9 @@ export default function AwardsApp() {
       id: 3,
       title: "National Pin Designer for Virginia TSA",
       organization: "",
-      year: "2026",
-      image: "/tsa_pin.png",
-      description: "Designed outer space-themed pin to represent Virginia at the Technology Student Association's national conference. The design was produced and sold out at the national event."
+      year: "2025",
+      image: "/MyPin.jpg",
+      description: "Designed outer space-themed pin to represent Virginia at the Technology Student Association's national conference. The design sold out."
     },
   ];
 
