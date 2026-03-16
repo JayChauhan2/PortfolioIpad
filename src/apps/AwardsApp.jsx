@@ -4,6 +4,29 @@ import { ChevronRight, ChevronDown } from 'lucide-react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 
+const renderDescriptionWithLinks = (text) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  
+  return parts.map((part, i) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a 
+          key={i} 
+          href={part} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-[#B38728] font-medium hover:underline cursor-pointer transition-all underline-offset-4"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+};
+
 const AwardCard = ({ award, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -57,8 +80,8 @@ const AwardCard = ({ award, index }) => {
               className="overflow-hidden w-full"
             >
               <div className="px-8 pb-8">
-                <div className="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 text-gray-700 text-lg leading-relaxed font-light shadow-inner whitespace-pre-wrap">
-                  {award.description}
+                <div className="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 text-gray-700 text-lg leading-relaxed font-light shadow-inner whitespace-pre-wrap translate-z-0">
+                  {renderDescriptionWithLinks(award.description)}
                 </div>
               </div>
             </motion.div>
