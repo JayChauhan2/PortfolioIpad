@@ -120,10 +120,11 @@ export default function OrganizationsApp({ onClose }) {
   ];
 
   const rejectedOrgs = [
-    { id: 101, name: "Google", role: "Software Engineering Intern" },
-    { id: 102, name: "Apple", role: "Frontend Developer" },
-    { id: 103, name: "Microsoft", role: "Product Management Intern" },
-    { id: 104, name: "Meta", role: "Data Science Intern" },
+    { id: 101, name: "SPARC", role: "Summer Program on Applied Rationality and Cognition" },
+    { id: 102, name: "Rockefeller University", role: "Summer Science Research Program (SSRP)" },
+    { id: 103, name: "University of Pennsylvania", role: "Undergraduate Applicant" },
+    { id: 104, name: "MIT Blueprint", role: "Student Hacker Applicant" },
+    { id: 105, name: "Founders Inc.", role: "Artifact Accelerator Applicant" },
   ];
 
   const toggleAccordion = (id) => {
@@ -274,28 +275,18 @@ export default function OrganizationsApp({ onClose }) {
               </div>
             </div>
           ) : (
-            <div className="p-8 max-w-4xl mx-auto h-full flex flex-col pt-16 items-center text-center">
-              <div className="w-16 h-16 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-50">
-                <FolderIcon size={32} fill="currentColor" />
-              </div>
+            <div className="p-8 max-w-2xl mx-auto h-full flex flex-col pt-16 items-start text-left">
               <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Rejected from</h1>
-              <p className="text-xl text-gray-500 font-medium leading-relaxed max-w-xl mb-12">
+              <p className="text-xl text-gray-500 font-medium leading-relaxed mb-12">
                 Every setback becomes a reminder to keep trying harder the next time.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl">
+              <div className="w-full space-y-4 border-l-2 border-gray-100 pl-8">
                 {rejectedOrgs.map((org) => (
-                  <div key={org.id} className="bg-gray-50/50 border border-gray-100 p-5 rounded-2xl flex items-center justify-between group hover:bg-white hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-sm font-bold text-gray-400">
-                        {org.name[0]}
-                      </div>
-                      <div className="text-left">
-                        <h4 className="font-bold text-base text-gray-900 tracking-tight">{org.name}</h4>
-                        <p className="text-xs font-medium text-gray-400">{org.role}</p>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-blue-200 group-hover:bg-blue-500 transition-colors"></div>
+                  <div key={org.id} className="group py-2">
+                    <p className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {org.name} <span className="mx-2 text-gray-300 font-light">—</span> <span className="text-gray-500 font-medium">{org.role}</span>
+                    </p>
                   </div>
                 ))}
               </div>
