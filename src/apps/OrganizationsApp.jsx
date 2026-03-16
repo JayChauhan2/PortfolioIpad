@@ -141,13 +141,13 @@ export default function OrganizationsApp({ onClose }) {
       <div className="flex items-center justify-between px-6 pb-3 pt-10 border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-20 shadow-sm">
         <div className="flex items-center gap-6">
           <button
-            className="text-blue-600 font-semibold cursor-pointer hover:text-blue-700 transition-colors flex items-center gap-1 group text-sm"
+            className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1 transition-colors"
             onClick={onClose}
           >
-            <span className="text-xl group-hover:-translate-x-1 transition-transform">‹</span>
+            <span className="group-hover:-translate-x-1 transition-transform">‹</span>
             <span>Browse</span>
           </button>
-          <h2 className="font-bold text-base tracking-tight">
+          <h2 className="font-bold text-lg tracking-tight text-gray-900">
             {activeView === 'accepted' ? 'Experience' : 'Rejected Applications'}
           </h2>
         </div>
@@ -157,28 +157,28 @@ export default function OrganizationsApp({ onClose }) {
         {/* Sidebar */}
         <aside className="w-64 border-r border-gray-200 bg-gray-50/50 p-5 flex flex-col justify-between h-full">
           <div>
-            <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 px-2">Locations</h3>
-            <nav className="space-y-1">
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 px-2">Locations</h3>
+            <nav className="space-y-1.5">
               <button
                 onClick={() => setActiveView('accepted')}
-                className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 ${activeView === 'accepted'
+                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-xl transition-all duration-200 ${activeView === 'accepted'
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-semibold'
                     : 'text-gray-600 hover:bg-gray-200/50 font-medium'
                   }`}
               >
-                <Briefcase size={16} />
-                <span className="text-sm">Accepted</span>
+                <Briefcase size={18} />
+                <span className="text-base">Accepted</span>
               </button>
 
               <button
                 onClick={() => setActiveView('rejected')}
-                className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 ${activeView === 'rejected'
+                className={`w-full flex items-center gap-2.5 px-4 py-3 rounded-xl transition-all duration-200 ${activeView === 'rejected'
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-semibold'
                     : 'text-gray-600 hover:bg-gray-200/50 font-medium'
                   }`}
               >
-                <FolderIcon size={16} />
-                <span className="text-sm">Rejected</span>
+                <FolderIcon size={18} />
+                <span className="text-base">Rejected</span>
               </button>
             </nav>
           </div>
@@ -186,18 +186,18 @@ export default function OrganizationsApp({ onClose }) {
           <div className="pt-4 border-t border-gray-200">
             <button
               onClick={handleResumeClick}
-              className="w-full flex items-center justify-between group px-3 py-2.5 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all duration-300"
+              className="w-full flex items-center justify-between group px-4 py-3 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all duration-300"
             >
               <div className="flex items-center gap-3">
-                <div className="p-1.5 bg-blue-50 text-blue-500 rounded-lg group-hover:bg-blue-100 transition-colors">
-                  <FileText size={18} />
+                <div className="p-2 bg-blue-50 text-blue-500 rounded-lg group-hover:bg-blue-100 transition-colors">
+                  <FileText size={20} />
                 </div>
                 <div className="text-left">
-                  <p className="text-[13px] font-bold text-gray-900">Resume.pdf</p>
-                  <p className="text-[9px] text-gray-400 font-medium">External Link</p>
+                  <p className="text-base font-bold text-gray-900">Resume.pdf</p>
+                  <p className="text-xs text-gray-400 font-medium">External Link</p>
                 </div>
               </div>
-              <ExternalLink size={12} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
+              <ExternalLink size={14} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
             </button>
           </div>
         </aside>
