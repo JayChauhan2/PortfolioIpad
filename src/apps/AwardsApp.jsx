@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronDown } from 'lucide-react';
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadFull } from "tsparticles";
 import tedTalkImg from '../assets/TEDTalk.png';
 import congressionalImg from '../assets/congressional_app.png';
 import tsaPinImg from '../assets/tsa_pin.png';
 
-const AwardCard = ({ award }) => {
+const AwardCard = ({ award, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="mb-10">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
+      className="mb-10 will-change-transform"
+    >
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left bg-white/70 backdrop-blur-xl rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 hover:scale-[1.01] active:scale-[0.99] flex flex-col cursor-pointer group focus:outline-none focus:ring-2 focus:ring-yellow-500/20"
+        className="w-full text-left bg-white/70 backdrop-blur-lg rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 hover:scale-[1.01] active:scale-[0.99] flex flex-col cursor-pointer group focus:outline-none focus:ring-2 focus:ring-yellow-500/20"
         aria-expanded={isExpanded}
       >
         {/* Award Image */}
@@ -20,6 +27,7 @@ const AwardCard = ({ award }) => {
           <img
             src={award.image}
             alt={award.title}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-40"></div>
@@ -41,34 +49,14 @@ const AwardCard = ({ award }) => {
         <AnimatePresence initial={false}>
           {isExpanded && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{
-                height: 'auto',
-                opacity: 1,
-                transition: {
-                  height: {
-                    duration: 0.4,
-                    ease: [0.04, 0.62, 0.23, 0.98]
-                  },
-                  opacity: {
-                    duration: 0.25,
-                    delay: 0.1
-                  }
-                }
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={{
+                open: { height: 'auto', opacity: 1 },
+                collapsed: { height: 0, opacity: 0 }
               }}
-              exit={{
-                height: 0,
-                opacity: 0,
-                transition: {
-                  height: {
-                    duration: 0.4,
-                    ease: [0.04, 0.62, 0.23, 0.98]
-                  },
-                  opacity: {
-                    duration: 0.2
-                  }
-                }
-              }}
+              transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
               className="overflow-hidden w-full"
             >
               <div className="px-8 pb-8">
@@ -80,11 +68,21 @@ const AwardCard = ({ award }) => {
           )}
         </AnimatePresence>
       </button>
-    </div>
+    </motion.div>
   );
 };
 
 export default function AwardsApp() {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
   const featuredAwards = [
     {
       id: 1,
@@ -126,16 +124,53 @@ export default function AwardsApp() {
     { id: 9, title: "Deep Run High School Principal's Scholar Award", organization: "", year: "2024" },
   ];
 
+  const particlesOptions = {
+    fullScreen: { enable: false },
+    particles: {
+      number: { value: 0 },
+      color: { value: ["#B38728", "#8A6623", "#BF953F", "#F1D279"] },
+      shape: { type: ["square", "circle"] },
+      opacity: { value: 1 },
+      size: { value: { min: 4, max: 7 } },
+      move: {
+        enable: true,
+        gravity: { enable: true, acceleration: 15 },
+        speed: { min: 10, max: 25 },
+        decay: 0.1,
+        direction: "top",
+        outModes: { default: "destroy", top: "none" }
+      },
+      roll: { enable: true, speed: { min: 5, max: 15 } },
+      tilt: { enable: true, move: true, speed: { min: 5, max: 15 } },
+      wobble: { enable: true, distance: 30, speed: { min: -7, max: 7 } }
+    },
+    emitters: [
+      {
+        direction: "top",
+        life: { count: 1, duration: 0.1, delay: 0.4 },
+        rate: { delay: 0.05, quantity: 150 },
+        size: { width: 100, height: 0 },
+        position: { x: 50, y: -5 }
+      }
+    ]
+  };
+
   return (
-    <div className="w-full h-full bg-[#f5f5f7] flex flex-col p-8 overflow-y-auto pt-24 text-gray-900 pb-32 overscroll-contain">
-      <div className="max-w-3xl mx-auto w-full">
+    <div className="w-full h-full bg-[#f5f5f7] flex flex-col p-8 overflow-y-auto pt-24 text-gray-900 pb-32 overscroll-contain will-change-scroll relative">
+      {init && (
+        <div className="absolute top-0 left-0 right-0 h-64 pointer-events-none z-[200]">
+          <Particles id="tsparticles" className="w-full h-full" options={particlesOptions} />
+        </div>
+      )}
+      
+      <div className="max-w-3xl mx-auto w-full relative z-10">
         <header className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-4"
           >
-            <h1 className="text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] bg-clip-text text-transparent">
+            <h1 className="text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-[#8A6623] via-[#B38728] to-[#8A6623] bg-clip-text text-transparent">
               Honors & Awards
             </h1>
           </motion.div>
@@ -144,14 +179,19 @@ export default function AwardsApp() {
 
         <section className="mb-20">
           <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#B38728]/60 mb-8 ml-2">Featured Awards</h2>
-          {featuredAwards.map((award) => (
-            <AwardCard key={award.id} award={award} />
+          {featuredAwards.map((award, index) => (
+            <AwardCard key={award.id} award={award} index={index} />
           ))}
         </section>
 
         <section>
           <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#B38728]/60 mb-8 ml-2">Other Recognitions</h2>
-          <div className="bg-white/70 backdrop-blur-xl rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="bg-white/70 backdrop-blur-lg rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]"
+          >
             {otherAwards.map((award, index) => (
               <div
                 key={award.id}
@@ -164,7 +204,7 @@ export default function AwardsApp() {
                 <span className="text-sm font-bold tabular-nums text-gray-300 tracking-widest">{award.year}</span>
               </div>
             ))}
-          </div>
+          </motion.div>
         </section>
       </div>
     </div>
