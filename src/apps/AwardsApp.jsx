@@ -3,9 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import tedTalkImg from '../assets/TEDTalk.png';
-import congressionalImg from '../assets/congressional_app.png';
-import tsaPinImg from '../assets/tsa_pin.png';
 
 const AwardCard = ({ award, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -89,7 +86,7 @@ export default function AwardsApp() {
       title: "TEDx Youth Speaker",
       organization: "",
       year: "2026",
-      image: tedTalkImg,
+      image: "/TEDTalk.png",
       description: "Presented TED talk on AI and student entrepreneurship. To prepare, I created an Agentic-AI website that would curate speeches from past TED Talks. Site: https://tedtalkbrowser.vercel.app/ - Watch speech: https://youtu.be/1JXjNWVFe5E?si=SeiPdKm59BS7bOis&t=57"
     },
     {
@@ -97,7 +94,7 @@ export default function AwardsApp() {
       title: "Congressional App Challenge",
       organization: "",
       year: "2025",
-      image: congressionalImg,
+      image: "/CongressionalApp.png",
       description: "Fine-tuned AI model (38K+ words) for Veterans with PTSD. Recognized as a national winner for innovation and technical excellence. Press: https://wittman.house.gov/news/documentsingle.aspx?DocumentID=6713"
     },
     {
@@ -105,7 +102,7 @@ export default function AwardsApp() {
       title: "National Pin Designer for Virginia TSA",
       organization: "",
       year: "2026",
-      image: tsaPinImg,
+      image: "/tsa_pin.png",
       description: "Designed outer space-themed pin to represent Virginia at TSA's national conference. The design was produced and sold out at the national event."
     },
   ];
@@ -125,19 +122,19 @@ export default function AwardsApp() {
   ];
 
   const particlesOptions = {
-    fullScreen: { enable: false },
+    fullScreen: { enable: true, zIndex: 200 },
     particles: {
       number: { value: 0 },
       color: { value: ["#B38728", "#8A6623", "#BF953F", "#F1D279"] },
-      shape: { type: ["square", "circle"] },
+      shape: { type: ["circle", "square"] },
       opacity: { value: 1 },
-      size: { value: { min: 4, max: 7 } },
+      size: { value: { min: 4, max: 8 } },
       move: {
         enable: true,
-        gravity: { enable: true, acceleration: 15 },
-        speed: { min: 10, max: 25 },
-        decay: 0.1,
-        direction: "top",
+        gravity: { enable: true, acceleration: 12 },
+        speed: { min: 10, max: 20 },
+        decay: 0.05,
+        direction: "bottom",
         outModes: { default: "destroy", top: "none" }
       },
       roll: { enable: true, speed: { min: 5, max: 15 } },
@@ -146,9 +143,9 @@ export default function AwardsApp() {
     },
     emitters: [
       {
-        direction: "top",
+        direction: "bottom",
         life: { count: 1, duration: 0.1, delay: 0.4 },
-        rate: { delay: 0.05, quantity: 150 },
+        rate: { delay: 0.1, quantity: 200 },
         size: { width: 100, height: 0 },
         position: { x: 50, y: -5 }
       }
@@ -158,9 +155,7 @@ export default function AwardsApp() {
   return (
     <div className="w-full h-full bg-[#f5f5f7] flex flex-col p-8 overflow-y-auto pt-24 text-gray-900 pb-32 overscroll-contain will-change-scroll relative">
       {init && (
-        <div className="absolute top-0 left-0 right-0 h-64 pointer-events-none z-[200]">
-          <Particles id="tsparticles" className="w-full h-full" options={particlesOptions} />
-        </div>
+        <Particles id="tsparticles" options={particlesOptions} />
       )}
       
       <div className="max-w-3xl mx-auto w-full relative z-10">
@@ -170,7 +165,7 @@ export default function AwardsApp() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-4"
           >
-            <h1 className="text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-[#8A6623] via-[#B38728] to-[#8A6623] bg-clip-text text-transparent">
+            <h1 className="text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-[#BF953F] via-[#8A6623] to-[#BF953F] bg-clip-text text-transparent">
               Honors & Awards
             </h1>
           </motion.div>
