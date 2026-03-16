@@ -28,7 +28,7 @@ export default function OrganizationsApp({ onClose }) {
       role: "School Treasurer",
       dates: "Sep 2025 - Present",
       location: "Henrico, VA",
-      image: "https://logo.clearbit.com/tsaweb.org",
+      image: "https://tsaweb.org/ResourcePackages/Bootstrap5/assets/dist/img/TSA_logo.png",
       description: [
         "Coordinated $13K+ in comp. fees, cut processing time 25%; raised $1000+ from 8 corp. donors; led 6 state & school promo campaigns reaching 500+ people.",
         "Worked with officer team to restructure organization leading to Top 3 chapter placement in the state with <1/2 the members of the previous year."
@@ -40,7 +40,7 @@ export default function OrganizationsApp({ onClose }) {
       role: "Lead Researcher",
       dates: "May 2025 - Nov 2025",
       location: "Richmond, VA",
-      image: "https://logo.clearbit.com/vcu.edu",
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/VCU_typeface.svg",
       description: [
         "Head Data Science Researcher for Graduate Program Director of Biostatistics at VCU.",
         "Executed a novel approach to create Connectome Matrix using MRI scans with MrTrix3 software.",
@@ -70,7 +70,7 @@ export default function OrganizationsApp({ onClose }) {
       role: "Job Shadow/Intern",
       dates: "Jun 2025 - Jul 2025",
       location: "On-site",
-      image: "https://logo.clearbit.com/fortytwolabs.com",
+      image: "https://static.wixstatic.com/media/061147_75bc500a62fd477cac1c5c0b7825cc6c~mv2.png/v1/crop/x_0,y_24,w_387,h_145/fill/w_211,h_79,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo.png",
       description: [
         "“Most startups fail in the first five years.” That’s what Nilesh Dhande, founder-CEO of Fortytwo Labs, told me as I shadowed him last summer.",
         "In conversations about his quantum-safe products, I gained countless insights from Dhande and other executives.",
@@ -83,7 +83,7 @@ export default function OrganizationsApp({ onClose }) {
       role: "School Secretary",
       dates: "Oct 2024 - Sep 2025",
       location: "Part-time",
-      image: "https://logo.clearbit.com/tsaweb.org",
+      image: "https://tsaweb.org/ResourcePackages/Bootstrap5/assets/dist/img/TSA_logo.png",
       description: [
         "Assistant to the chapter officers in managing membership and records.",
         "Streamlined communication processes for a chapter of 50+ members."
@@ -95,7 +95,7 @@ export default function OrganizationsApp({ onClose }) {
       role: "Intern",
       dates: "Oct 2023 - Mar 2024",
       location: "Remote",
-      image: "https://logo.clearbit.com/nasa.gov",
+      image: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg",
       description: [
         "Selected to the Virginia Space Coast Scholars program, learned NASA mission design and Earth science technologies.",
         "Created an original technical mission report about reducing CO2 emissions using scientific balloons.",
@@ -108,7 +108,7 @@ export default function OrganizationsApp({ onClose }) {
       role: "Student Researcher",
       dates: "Jul 2023",
       location: "Richmond, VA",
-      image: "https://logo.clearbit.com/vcu.edu",
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/VCU_typeface.svg",
       description: [
         "Analyzed 1000+ line flood data to identify correlations between precipitation levels and household size.",
         "Utilized regression analysis for proposing strategies to improve climate resilience in Virginia.",
@@ -120,13 +120,13 @@ export default function OrganizationsApp({ onClose }) {
   ];
 
   const rejectedOrgs = [
-    { id: 101, name: "SPARC" },
-    { id: 105, name: "Artifact Accelerator (Founders Inc.)" },
-    { id: 104, name: "MIT Blueprint" },
-    { id: 102, name: "Rockefeller University SSRP" },
-    { id: 106, name: "MIT" },
-    { id: 103, name: "University of Pennsylvania" },
-    { id: 107, name: "Carnegie Mellon" },
+    { id: 101, name: "SPARC", image: "https://logo.clearbit.com/sparc.camp" },
+    { id: 105, name: "Artifact Accelerator (Founders Inc.)", image: "https://logo.clearbit.com/f.inc" },
+    { id: 104, name: "MIT Blueprint", image: "https://logo.clearbit.com/hackmit.org" },
+    { id: 102, name: "Rockefeller University SSRP", image: "https://logo.clearbit.com/rockefeller.edu" },
+    { id: 106, name: "MIT", image: "https://logo.clearbit.com/mit.edu" },
+    { id: 103, name: "University of Pennsylvania", image: "https://logo.clearbit.com/upenn.edu" },
+    { id: 107, name: "Carnegie Mellon", image: "https://logo.clearbit.com/cmu.edu" },
   ];
 
   const toggleAccordion = (id) => {
@@ -232,7 +232,7 @@ export default function OrganizationsApp({ onClose }) {
                       >
                         <div className="flex items-start justify-between gap-6">
                           <div className="flex items-center gap-6">
-                            <div className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 flex-shrink-0 p-2 flex items-center justify-center">
+                            <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center p-1">
                               <img
                                 src={org.image}
                                 alt={org.name}
@@ -286,10 +286,20 @@ export default function OrganizationsApp({ onClose }) {
                     key={org.id}
                     className={`p-6 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
                   >
-                    <h4 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                      {org.name}
-                    </h4>
-                    <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-blue-400 transition-colors"></div>
+                    <div className="flex items-center gap-6">
+                      <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center p-1 group-hover:scale-105 transition-all duration-300">
+                        <img
+                          src={org.image}
+                          alt={org.name}
+                          className="w-full h-full object-contain transition-all"
+                          onError={(e) => { e.target.src = `https://via.placeholder.com/150/f1f5f9/64748b?text=${org.name[0]}`; }}
+                        />
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        {org.name}
+                      </h4>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-blue-400 group-hover:scale-125 transition-all"></div>
                   </div>
                 ))}
               </div>
