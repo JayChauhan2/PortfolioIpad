@@ -286,19 +286,9 @@ export default function OrganizationsApp({ onClose }) {
                     key={org.id}
                     className={`p-6 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
                   >
-                    <div className="flex items-center gap-6">
-                      <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center p-1 group-hover:scale-105 transition-all duration-300">
-                        <img
-                          src={org.image}
-                          alt={org.name}
-                          className="w-full h-full object-contain transition-all"
-                          onError={(e) => { e.target.src = `https://via.placeholder.com/150/f1f5f9/64748b?text=${org.name[0]}`; }}
-                        />
-                      </div>
-                      <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {org.name}
-                      </h4>
-                    </div>
+                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {org.name}
+                    </h4>
                     <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-blue-400 group-hover:scale-125 transition-all"></div>
                   </div>
                 ))}
