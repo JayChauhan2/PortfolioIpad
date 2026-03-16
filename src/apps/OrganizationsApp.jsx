@@ -120,11 +120,11 @@ export default function OrganizationsApp({ onClose }) {
   ];
 
   const rejectedOrgs = [
-    { id: 101, name: "SPARC", role: "Summer Program on Applied Rationality and Cognition" },
-    { id: 102, name: "Rockefeller University", role: "Summer Science Research Program (SSRP)" },
-    { id: 103, name: "University of Pennsylvania", role: "Undergraduate Applicant" },
-    { id: 104, name: "MIT Blueprint", role: "Student Hacker Applicant" },
-    { id: 105, name: "Founders Inc.", role: "Artifact Accelerator Applicant" },
+    { id: 101, name: "SPARC" },
+    { id: 102, name: "Rockefeller University SSRP" },
+    { id: 103, name: "University of Pennsylvania" },
+    { id: 104, name: "MIT Blueprint" },
+    { id: 105, name: "Artifact Accelerator (Founders Inc.)" },
   ];
 
   const toggleAccordion = (id) => {
@@ -281,12 +281,16 @@ export default function OrganizationsApp({ onClose }) {
                 Every setback becomes a reminder to keep trying harder the next time.
               </p>
 
-              <div className="w-full space-y-4 border-l-2 border-gray-100 pl-8">
-                {rejectedOrgs.map((org) => (
-                  <div key={org.id} className="group py-2">
-                    <p className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                      {org.name} <span className="mx-2 text-gray-300 font-light">—</span> <span className="text-gray-500 font-medium">{org.role}</span>
-                    </p>
+              <div className="w-full bg-white/70 backdrop-blur-lg rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+                {rejectedOrgs.map((org, index) => (
+                  <div 
+                    key={org.id} 
+                    className={`p-6 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
+                  >
+                    <h4 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {org.name}
+                    </h4>
+                    <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-blue-400 transition-colors"></div>
                   </div>
                 ))}
               </div>
