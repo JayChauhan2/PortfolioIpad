@@ -36,7 +36,7 @@ const APPS = [
   { 
     id: 'awards', name: 'Awards', 
     icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c2/82/bc/c282bc4d-7d60-1c41-3282-1d9accecf0bd/tips-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg" alt="Tips" className="w-full h-full object-cover" />, 
-    appBg: 'bg-slate-900', component: AwardsApp 
+    appBg: 'bg-white', component: AwardsApp 
   },
 ];
 
@@ -58,8 +58,8 @@ export default function App() {
 
   const ActiveApp = APPS.find((app) => app.id === currentApp)?.component;
   const ActiveAppBg = APPS.find((app) => app.id === currentApp)?.appBg || 'bg-white';
-  const isDarkApp = currentApp === 'awards' || currentApp === 'photos';
-  const statusTheme = (!currentApp || isDarkApp) ? 'dark' : 'light';
+  const isDarkApp = currentApp === 'photos';
+  const statusTheme = (!currentApp) ? 'dark' : (isDarkApp ? 'dark' : 'light');
 
   return (
     <div 
