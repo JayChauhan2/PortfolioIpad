@@ -205,11 +205,11 @@ export default function OrganizationsApp({ onClose }) {
         {/* Main Content Area */}
         <main className="flex-1 bg-white overflow-y-auto custom-scrollbar">
           {activeView === 'accepted' ? (
-            <div className="px-8 py-10 max-w-3xl mx-auto mb-20">
-              <div className="mb-14">
-                <h1 className="text-2xl font-black text-gray-900 mb-3 tracking-tight">Experience Journey</h1>
-                <p className="text-base text-gray-500 font-medium leading-relaxed max-w-xl">
-                  "I'm looking for new opportunities in a fast-paced environment. Feel free to reach out if you are, something like that."
+            <div className="px-8 pt-16 max-w-3xl mx-auto mb-20">
+              <div className="mb-12">
+                <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Experience Journey</h1>
+                <p className="text-xl text-gray-500 font-medium leading-relaxed">
+                  "I'm looking for new opportunities in a fast-paced environment. Feel free to reach out if you are."
                 </p>
               </div>
 
