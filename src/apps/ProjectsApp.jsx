@@ -8,7 +8,7 @@ const projects = [
     description: "Led the development of a full-stack AI app for Veterans with PTSD. Won Congress's largest annual app challenge.",
     icon: "/projects/troop_companion_icon.png",
     mainImage: "/projects/troop_companion_main.png",
-    link: "https://github.com/jaychauhan",
+    link: "https://www.youtube.com/watch?v=NUIK8kFSut0&t=96s",
     gradient: "from-blue-100 to-indigo-50"
   },
   {
@@ -17,17 +17,18 @@ const projects = [
     category: "AI SPEECH ANALYSIS",
     description: "Developed a Swift application to improve public speaking through AI-analyzation of audio and video.",
     icon: "/projects/echo_icon.png",
-    link: "https://github.com/jaychauhan",
+    link: "https://youtu.be/oB4n1nLaWj8?si=ZBoaqZ9FSs2UAFbc&t=46",
     gradient: "from-purple-100 to-pink-50"
   },
   {
     id: 'plant-detector',
-    name: "AI Plant Disease Detector",
+    name: "Plant Machine Learning Cures (MLC)",
     category: "GLOBAL FINALIST 🏅",
     description: "Created an image-recognition tool for curing plant diseases; earned global finalist recognition.",
     icon: "🌱",
     isEmoji: true,
-    link: "https://github.com/jaychauhan",
+    mainImage: "/projects/plant_mlc_main.png",
+    link: "https://github.com/JayChauhan2/DiseaseDetectorPlants",
     gradient: "from-green-100 to-emerald-50"
   },
   {
@@ -36,21 +37,8 @@ const projects = [
     category: "GLOBAL SEMIFINALIST 🏅",
     description: "An Agentic-AI-based math learning site addressing critical gap for homeschooled and underprivileged students.",
     icon: "/projects/square_away_icon.png",
-    mainImage: "/projects/square_away_main.png",
-    imagePosition: "center 30%",
-    link: "https://github.com/jaychauhan",
+    link: "https://www.youtube.com/watch?v=e1JHZAu95eQ&t=39s",
     gradient: "from-orange-100 to-amber-50"
-  },
-  {
-    id: 'ai-literacy',
-    name: "Demystifying AI Series",
-    category: "LITERACY INITIATIVE",
-    description: "Led a school-wide effort to boost AI literacy through a presentation keynote series for 100+ students.",
-    icon: "🧠",
-    isEmoji: true,
-    mainImage: "/projects/ai_literacy_main.png",
-    link: "https://github.com/jaychauhan",
-    gradient: "from-cyan-100 to-sky-50"
   },
   {
     id: 'camera-checkout',
@@ -61,8 +49,20 @@ const projects = [
     isEmoji: true,
     mainImage: "/projects/camera_checkout_main.jpg",
     imagePosition: "center 15%",
-    link: "https://www.newsbreak.com/henrico-citizen-560689/4331330998682-henrico-student-s-camera-check-out-project-helping-henrico-schools",
+    link: "https://www.henricocitizen.com/henrico-students-camera-check-out-project-helping-henrico-schools/",
     gradient: "from-gray-100 to-slate-200"
+  },
+  {
+    id: 'ai-literacy',
+    name: "Demystifying AI Series",
+    category: "LITERACY INITIATIVE",
+    description: "Led a school-wide effort to boost AI literacy through a presentation keynote series for 100+ students.",
+    icon: "🧠",
+    isEmoji: true,
+    mainImage: "/projects/ai_literacy_main.png",
+    hideGetButton: true,
+    link: "https://github.com/jaychauhan2",
+    gradient: "from-cyan-100 to-sky-50"
   }
 ];
 
@@ -115,15 +115,17 @@ export default function ProjectsApp() {
                   <p className="text-sm text-gray-500 line-clamp-2">{proj.description}</p>
                 </div>
               </div>
-              <button
-                className="ml-4 bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(proj.link, '_blank');
-                }}
-              >
-                GET
-              </button>
+              {!proj.hideGetButton && (
+                <button
+                  className="ml-4 bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(proj.link, '_blank');
+                  }}
+                >
+                  GET
+                </button>
+              )}
             </div>
           </div>
         ))}

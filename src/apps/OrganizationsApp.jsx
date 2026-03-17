@@ -210,7 +210,7 @@ export default function OrganizationsApp({ onClose }) {
               <div className="mb-12">
                 <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Experience Journey</h1>
                 <p className="text-xl text-gray-500 font-medium leading-relaxed">
-                  "I'm looking for new opportunities in a fast-paced environment. Feel free to reach out if you are."
+                  I love fast-paced environments and am looking to challenge myself, always.
                 </p>
               </div>
 
