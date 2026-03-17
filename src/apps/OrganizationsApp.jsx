@@ -174,7 +174,7 @@ export default function OrganizationsApp({ onClose }) {
               <button
                 onClick={() => setActiveView('rejected')}
                 className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${activeView === 'rejected'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-bold'
+                  ? 'bg-red-600 text-white shadow-md shadow-red-100 font-bold'
                   : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
                   }`}
               >
@@ -286,10 +286,10 @@ export default function OrganizationsApp({ onClose }) {
                     key={org.id}
                     className={`p-6 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
                   >
-                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
                       {org.name}
                     </h4>
-                    <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-blue-400 group-hover:scale-125 transition-all"></div>
+                    <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-red-400 group-hover:scale-125 transition-all"></div>
                   </div>
                 ))}
               </div>
