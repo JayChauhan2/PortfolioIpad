@@ -24,8 +24,9 @@ const projects = [
     id: 'plant-detector',
     name: "AI Plant Disease Detector",
     category: "GLOBAL FINALIST 🏅",
-    description: "Created an image-recognition tool for recognizing plant diseases; earned global finalist recognition.",
-    icon: "/projects/plant_detector_icon.png",
+    description: "Created an image-recognition tool for curing plant diseases; earned global finalist recognition.",
+    icon: "🌱",
+    isEmoji: true,
     link: "https://github.com/jaychauhan",
     gradient: "from-green-100 to-emerald-50"
   },
@@ -35,6 +36,8 @@ const projects = [
     category: "GLOBAL SEMIFINALIST 🏅",
     description: "An Agentic-AI-based math learning site addressing critical gap for homeschooled and underprivileged students.",
     icon: "/projects/square_away_icon.png",
+    mainImage: "/projects/square_away_main.png",
+    imagePosition: "center 30%",
     link: "https://github.com/jaychauhan",
     gradient: "from-orange-100 to-amber-50"
   },
@@ -43,7 +46,8 @@ const projects = [
     name: "Demystifying AI Series",
     category: "LITERACY INITIATIVE",
     description: "Led a school-wide effort to boost AI literacy through a presentation keynote series for 100+ students.",
-    icon: "/projects/ai_literacy_icon.png",
+    icon: "🧠",
+    isEmoji: true,
     mainImage: "/projects/ai_literacy_main.png",
     link: "https://github.com/jaychauhan",
     gradient: "from-cyan-100 to-sky-50"
@@ -53,7 +57,8 @@ const projects = [
     name: "Camera Check Out",
     category: "COMMUNITY IMPACT",
     description: "Founded a project to save $15,000 in lost camera equipment through efficient tracking. Recognized by local press.",
-    icon: "/projects/camera_checkout_icon.png",
+    icon: "📸",
+    isEmoji: true,
     mainImage: "/projects/camera_checkout_main.jpg",
     imagePosition: "center 15%",
     link: "https://www.newsbreak.com/henrico-citizen-560689/4331330998682-henrico-student-s-camera-check-out-project-helping-henrico-schools",
@@ -82,9 +87,9 @@ export default function ProjectsApp() {
               </span>
               {proj.mainImage ? (
                 <div className="absolute inset-0">
-                  <img 
-                    src={proj.mainImage} 
-                    alt={proj.name} 
+                  <img
+                    src={proj.mainImage}
+                    alt={proj.name}
                     className="w-full h-full object-cover"
                     style={proj.imagePosition ? { objectPosition: proj.imagePosition } : {}}
                   />
@@ -98,8 +103,12 @@ export default function ProjectsApp() {
             </div>
             <div className="p-4 flex justify-between items-center bg-white min-h-[96px]">
               <div className="flex gap-4 items-center flex-1">
-                <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center shadow-inner overflow-hidden border border-gray-100">
-                  <img src={proj.icon} alt={`${proj.name} icon`} className="w-full h-full object-cover" />
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden">
+                  {proj.isEmoji ? (
+                    <span className="text-4xl">{proj.icon}</span>
+                  ) : (
+                    <img src={proj.icon} alt={`${proj.name} icon`} className="w-full h-full object-cover" />
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-bold truncate">{proj.name}</h3>
