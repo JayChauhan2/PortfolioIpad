@@ -120,6 +120,7 @@ export default function OrganizationsApp({ onClose }) {
   ];
 
   const rejectedOrgs = [
+    { id: 108, name: "Meritocracy Fellowship", image: "https://logo.clearbit.com/sparc.camp" },
     { id: 101, name: "SPARC", image: "https://logo.clearbit.com/sparc.camp" },
     { id: 105, name: "Artifact Accelerator (Founders Inc.)", image: "https://logo.clearbit.com/f.inc" },
     { id: 104, name: "MIT Blueprint", image: "https://logo.clearbit.com/hackmit.org" },
@@ -127,6 +128,7 @@ export default function OrganizationsApp({ onClose }) {
     { id: 106, name: "MIT", image: "https://logo.clearbit.com/mit.edu" },
     { id: 103, name: "University of Pennsylvania", image: "https://logo.clearbit.com/upenn.edu" },
     { id: 107, name: "Carnegie Mellon", image: "https://logo.clearbit.com/cmu.edu" },
+    { id: 109, name: "Georgia Tech", image: "https://logo.clearbit.com/cmu.edu" },
   ];
 
   const toggleAccordion = (id) => {
