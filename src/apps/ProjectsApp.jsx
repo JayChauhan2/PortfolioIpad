@@ -7,6 +7,7 @@ const projects = [
     category: "NATIONAL WINNER 🏆",
     description: "Led the development of a full-stack AI app for Veterans with PTSD. Won Congress's largest annual app challenge.",
     icon: "/projects/troop_companion_icon.png",
+    mainImage: "/projects/troop_companion_main.png",
     link: "https://github.com/jaychauhan",
     gradient: "from-blue-100 to-indigo-50"
   },
@@ -43,6 +44,7 @@ const projects = [
     category: "LITERACY INITIATIVE",
     description: "Led a school-wide effort to boost AI literacy through a presentation keynote series for 100+ students.",
     icon: "/projects/ai_literacy_icon.png",
+    mainImage: "/projects/ai_literacy_main.png",
     link: "https://github.com/jaychauhan",
     gradient: "from-cyan-100 to-sky-50"
   },
@@ -52,6 +54,7 @@ const projects = [
     category: "COMMUNITY IMPACT",
     description: "Founded a project to save $15,000 in lost camera equipment through efficient tracking. Recognized by local press.",
     icon: "/projects/camera_checkout_icon.png",
+    mainImage: "/projects/camera_checkout_main.jpg",
     link: "https://www.newsbreak.com/henrico-citizen-560689/4331330998682-henrico-student-s-camera-check-out-project-helping-henrico-schools",
     gradient: "from-gray-100 to-slate-200"
   }
@@ -67,16 +70,22 @@ export default function ProjectsApp() {
 
       <div className="p-8 flex flex-col gap-10">
         {projects.map(proj => (
-          <div 
-            key={proj.id} 
+          <div
+            key={proj.id}
             className="w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col cursor-pointer transition-transform hover:scale-[1.01] duration-300"
             onClick={() => window.open(proj.link, '_blank')}
           >
-            <div className={`h-64 bg-gradient-to-br ${proj.gradient} flex flex-col justify-between p-6`}>
-              <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider">{proj.category}</span>
-              <div className="flex justify-center flex-1 items-center pb-4">
-                <img src={proj.icon} alt={proj.name} className="h-40 w-40 object-contain drop-shadow-2xl" />
-              </div>
+            <div className={`h-64 bg-gradient-to-br ${proj.gradient} flex flex-col justify-between p-6 relative overflow-hidden`}>
+              <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider relative z-10">{proj.category}</span>
+              {proj.mainImage ? (
+                <div className="absolute inset-0">
+                  <img src={proj.mainImage} alt={proj.name} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className="flex justify-center flex-1 items-center pb-4">
+                  <img src={proj.icon} alt={proj.name} className="h-40 w-40 object-contain drop-shadow-2xl" />
+                </div>
+              )}
             </div>
             <div className="p-4 flex justify-between items-center bg-white min-h-[96px]">
               <div className="flex gap-4 items-center flex-1">
@@ -88,7 +97,7 @@ export default function ProjectsApp() {
                   <p className="text-sm text-gray-500 line-clamp-2">{proj.description}</p>
                 </div>
               </div>
-              <button 
+              <button
                 className="ml-4 bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -103,7 +112,7 @@ export default function ProjectsApp() {
       </div>
 
       <div className="w-full text-center py-10 px-10 text-gray-400 text-sm font-medium">
-        <p>Featured projects by Jay Chauhan</p>
+        <p>Always built with ❤️ by me.</p>
       </div>
     </div>
   );
