@@ -55,6 +55,7 @@ const projects = [
     description: "Founded a project to save $15,000 in lost camera equipment through efficient tracking. Recognized by local press.",
     icon: "/projects/camera_checkout_icon.png",
     mainImage: "/projects/camera_checkout_main.jpg",
+    imagePosition: "center 15%",
     link: "https://www.newsbreak.com/henrico-citizen-560689/4331330998682-henrico-student-s-camera-check-out-project-helping-henrico-schools",
     gradient: "from-gray-100 to-slate-200"
   }
@@ -76,10 +77,18 @@ export default function ProjectsApp() {
             onClick={() => window.open(proj.link, '_blank')}
           >
             <div className={`h-64 bg-gradient-to-br ${proj.gradient} flex flex-col justify-between p-6 relative overflow-hidden`}>
-              <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider relative z-10">{proj.category}</span>
+              <span className={`text-sm font-semibold uppercase tracking-wider relative z-10 ${proj.mainImage && proj.id !== 'troop-companion' ? 'text-white drop-shadow-md' : 'text-gray-500'}`}>
+                {proj.category}
+              </span>
               {proj.mainImage ? (
                 <div className="absolute inset-0">
-                  <img src={proj.mainImage} alt={proj.name} className="w-full h-full object-cover" />
+                  <img 
+                    src={proj.mainImage} 
+                    alt={proj.name} 
+                    className="w-full h-full object-cover"
+                    style={proj.imagePosition ? { objectPosition: proj.imagePosition } : {}}
+                  />
+                  {proj.id !== 'troop-companion' && <div className="absolute inset-0 bg-black/10 z-0" />}
                 </div>
               ) : (
                 <div className="flex justify-center flex-1 items-center pb-4">
