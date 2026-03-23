@@ -1,4 +1,5 @@
 import React from 'react';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 const projects = [
   {
@@ -66,22 +67,34 @@ const projects = [
   }
 ];
 
-export default function ProjectsApp() {
+export default function ProjectsApp({ onClose }) {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   return (
     <div className="w-full h-full bg-white flex flex-col overflow-y-auto text-black pb-20">
-      <div className="pt-16 px-8 pb-6 border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur-md z-10">
-        <h1 className="text-4xl font-bold">Today</h1>
-        <p className="text-gray-500 font-medium mt-1">LATEST PROJECTS</p>
+      <div className={`px-8 ${isMobile ? 'pt-6 pb-4' : 'pt-16 pb-6'} border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur-md z-20 flex items-center justify-between`}>
+        <div className="flex items-center gap-6">
+          <button
+            className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1 transition-colors"
+            onClick={onClose}
+          >
+            <span>&lt; Back</span>
+          </button>
+          <div className="text-left">
+            <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold`}>Today</h1>
+            <p className="text-gray-500 font-medium mt-1">LATEST PROJECTS</p>
+          </div>
+        </div>
       </div>
 
-      <div className="p-8 flex flex-col gap-10">
+      <div className={`p-8 flex flex-col ${isMobile ? 'gap-6' : 'gap-10'}`}>
         {projects.map(proj => (
           <div
             key={proj.id}
-            className="w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col cursor-pointer transition-transform hover:scale-[1.01] duration-300"
+            className="w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col cursor-pointer transition-transform hover:scale-[1.01] duration-300 group"
             onClick={() => window.open(proj.link, '_blank')}
           >
-            <div className={`h-64 bg-gradient-to-br ${proj.gradient} flex flex-col justify-between p-6 relative overflow-hidden`}>
+            <div className={`${isMobile ? 'h-48' : 'h-64'} bg-gradient-to-br ${proj.gradient} flex flex-col justify-between p-6 relative overflow-hidden text-left`}>
               <span className={`text-sm font-semibold uppercase tracking-wider relative z-10 ${proj.mainImage && proj.id !== 'troop-companion' ? 'text-white drop-shadow-md' : 'text-gray-500'}`}>
                 {proj.category}
               </span>
@@ -97,15 +110,15 @@ export default function ProjectsApp() {
                 </div>
               ) : (
                 <div className="flex justify-center flex-1 items-center pb-4">
-                  <img src={proj.icon} alt={proj.name} className="h-40 w-40 object-contain drop-shadow-2xl" />
+                  <img src={proj.icon} alt={proj.name} className={`${isMobile ? 'h-32 w-32' : 'h-40 w-40'} object-contain drop-shadow-2xl`} />
                 </div>
               )}
             </div>
-            <div className="p-4 flex justify-between items-center bg-white min-h-[96px]">
-              <div className="flex gap-4 items-center flex-1">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden">
+            <div className={`p-4 flex flex-col ${isMobile ? 'gap-4' : 'sm:flex-row sm:items-center sm:justify-between'} bg-white min-h-[96px]`}>
+              <div className="flex gap-4 items-center flex-1 text-left">
+                <div className={`${isMobile ? 'w-12 h-12' : 'w-16 h-16'} rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0`}>
                   {proj.isEmoji ? (
-                    <span className="text-4xl">{proj.icon}</span>
+                    <span className={`${isMobile ? 'text-2xl' : 'text-4xl'}`}>{proj.icon}</span>
                   ) : (
                     <img src={proj.icon} alt={`${proj.name} icon`} className="w-full h-full object-cover" />
                   )}
@@ -116,15 +129,17 @@ export default function ProjectsApp() {
                 </div>
               </div>
               {!proj.hideGetButton && (
-                <button
-                  className="ml-4 bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(proj.link, '_blank');
-                  }}
-                >
-                  GET
-                </button>
+                <div className={`${isMobile ? 'mt-2' : ''} flex justify-start`}>
+                  <button
+                    className="bg-gray-100 hover:bg-gray-200 text-blue-600 font-bold py-2 px-6 rounded-full text-sm uppercase tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 w-fit"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(proj.link, '_blank');
+                    }}
+                  >
+                    GET
+                  </button>
+                </div>
               )}
             </div>
           </div>

@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Folder as FolderIcon, FileText, ExternalLink, MapPin, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 export default function OrganizationsApp({ onClose }) {
   const [activeView, setActiveView] = useState('accepted');
   const [expandedId, setExpandedId] = useState(null);
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
 
   const resumeLink = "https://docs.google.com/document/d/1jos1zdzfCV9BhdBBNIXAm29DDxN1-hkT/edit?usp=sharing&ouid=112197956071955748407&rtpof=true&sd=true";
 
@@ -142,7 +145,7 @@ export default function OrganizationsApp({ onClose }) {
   return (
     <div className="w-full h-full flex flex-col bg-gray-50 text-black font-sans">
       {/* Top Navigation Bar */}
-      <div className="flex items-center justify-between px-6 pb-3 pt-10 border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-20 shadow-sm">
+      <div className={`flex items-center justify-between px-6 pb-3 ${isMobile ? 'pt-6' : 'pt-10'} border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-20 shadow-sm`}>
         <div className="flex items-center gap-6">
           <button
             className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1 transition-colors"
@@ -156,9 +159,10 @@ export default function OrganizationsApp({ onClose }) {
         </div>
       </div>
 
-      <div className="w-full flex-1 flex overflow-hidden">
+      <div className={`w-full flex-1 flex overflow-hidden ${isMobile ? 'flex-col' : ''}`}>
         {/* Sidebar */}
-        <aside className="w-64 border-r border-gray-200 bg-gray-50/50 p-6 flex flex-col justify-between h-full">
+        {!isMobile && (
+          <aside className="w-64 border-r border-gray-200 bg-gray-50/50 p-6 flex flex-col justify-between h-full">
           <div>
             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 px-2">Locations</h3>
             <nav className="space-y-2">
@@ -204,37 +208,38 @@ export default function OrganizationsApp({ onClose }) {
             </button>
           </div>
         </aside>
+        )}
 
         {/* Main Content Area */}
         <main className="flex-1 bg-white overflow-y-auto custom-scrollbar">
           {activeView === 'accepted' ? (
-            <div className="px-8 pt-16 max-w-3xl mx-auto mb-20">
-              <div className="mb-12">
-                <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Experience Journey</h1>
+            <div className={`px-8 ${isMobile ? 'pt-8' : 'pt-16'} max-w-3xl mx-auto mb-20`}>
+              <div className="mb-12 text-left">
+                <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-black text-gray-900 mb-4 tracking-tight`}>Experience Journey</h1>
                 <p className="text-xl text-gray-500 font-medium leading-relaxed">
                   I love fast-paced environments and am looking to challenge myself, always.
                 </p>
               </div>
 
               {/* Vertical Timeline */}
-              <div className="relative pl-10">
+              <div className={`relative ${isMobile ? 'pl-4' : 'pl-10'}`}>
                 {/* Vertical Line */}
-                <div className="absolute left-4 top-0 bottom-0 w-1 bg-gray-50"></div>
+                <div className={`absolute ${isMobile ? 'left-1' : 'left-4'} top-0 bottom-0 w-1 bg-gray-50`}></div>
 
                 <div className="space-y-8">
                   {acceptedOrgs.map((org) => (
                     <div key={org.id} className="relative">
                       {/* Timeline Dot */}
-                      <div className="absolute -left-[32px] top-9 w-5 h-5 rounded-full bg-gray-300 border-4 border-white z-10 shadow-sm"></div>
+                      <div className={`absolute ${isMobile ? '-left-[20px]' : '-left-[32px]'} top-9 w-4 h-4 rounded-full bg-gray-300 border-4 border-white z-10 shadow-sm`}></div>
 
                       {/* Experience Card */}
                       <div
                         onClick={() => toggleAccordion(org.id)}
-                        className={`cursor-pointer bg-white p-6 rounded-2xl border border-gray-100 transition-all duration-300 hover:shadow-lg ${expandedId === org.id ? 'shadow-md border-blue-100' : ''}`}
+                        className={`cursor-pointer bg-white ${isMobile ? 'p-4' : 'p-6'} rounded-2xl border border-gray-100 transition-all duration-300 hover:shadow-lg ${expandedId === org.id ? 'shadow-md border-blue-100' : ''}`}
                       >
-                        <div className="flex items-start justify-between gap-6">
-                          <div className="flex items-center gap-6">
-                            <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center p-1">
+                        <div className="flex items-start justify-between gap-4">
+                          <div className={`flex ${isMobile ? 'flex-col' : 'items-center'} gap-4 md:gap-6`}>
+                            <div className={`${isMobile ? 'w-12 h-12' : 'w-16 h-16'} flex-shrink-0 flex items-center justify-center p-1`}>
                               <img
                                 src={org.image}
                                 alt={org.name}
@@ -242,10 +247,10 @@ export default function OrganizationsApp({ onClose }) {
                                 onError={(e) => { e.target.src = `https://via.placeholder.com/150/f1f5f9/64748b?text=${org.name[0]}`; }}
                               />
                             </div>
-                            <div>
+                            <div className="text-left">
                               <h3 className="font-bold text-gray-900 text-lg leading-tight mb-1">{org.name}</h3>
                               <p className="text-blue-600 text-sm font-bold uppercase tracking-wider mb-2">{org.role}</p>
-                              <div className="flex gap-4 text-xs text-gray-400 font-bold uppercase">
+                              <div className={`flex ${isMobile ? 'flex-col gap-1' : 'gap-4'} text-xs text-gray-400 font-bold uppercase`}>
                                 <span className="flex items-center gap-1.5"><Calendar size={12} className="text-gray-300" /> {org.dates}</span>
                                 <span className="flex items-center gap-1.5"><MapPin size={12} className="text-gray-300" /> {org.location}</span>
                               </div>
@@ -276,19 +281,19 @@ export default function OrganizationsApp({ onClose }) {
               </div>
             </div>
           ) : (
-            <div className="p-8 max-w-2xl mx-auto flex flex-col pt-16 items-start text-left">
-              <h1 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Rejected from</h1>
+            <div className={`p-8 max-w-2xl mx-auto flex flex-col ${isMobile ? 'pt-8' : 'pt-16'} items-start text-left`}>
+              <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-black text-gray-900 mb-4 tracking-tight`}>Rejected from</h1>
               <p className="text-xl text-gray-500 font-medium leading-relaxed mb-12">
                 Every setback becomes a reminder to keep trying harder the next time.
               </p>
 
-              <div className="w-full bg-white/70 backdrop-blur-lg rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+              <div className="w-full bg-white/70 backdrop-blur-lg rounded-[2rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
                 {rejectedOrgs.map((org, index) => (
                   <div
                     key={org.id}
-                    className={`p-6 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
+                    className={`${isMobile ? 'p-4 px-6' : 'p-6 px-10'} flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
                   >
-                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
+                    <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-gray-900 group-hover:text-red-600 transition-colors`}>
                       {org.name}
                     </h4>
                     <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-red-400 group-hover:scale-125 transition-all"></div>
@@ -299,6 +304,41 @@ export default function OrganizationsApp({ onClose }) {
           )}
         </main>
       </div>
+
+      {/* Mobile Bottom Navigation Bar */}
+      {isMobile && (
+        <div className="flex items-center justify-around p-3 bg-white border-t border-gray-200 sticky bottom-0 z-30 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+          <button
+            onClick={() => setActiveView('accepted')}
+            className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 flex-1 max-w-[120px] ${activeView === 'accepted'
+              ? 'text-blue-600 bg-blue-50/50 font-bold'
+              : 'text-gray-400 font-medium'
+              }`}
+          >
+            <Briefcase size={20} />
+            <span className="text-xs">Accepted</span>
+          </button>
+
+          <button
+            onClick={() => setActiveView('rejected')}
+            className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 flex-1 max-w-[120px] ${activeView === 'rejected'
+              ? 'text-red-600 bg-red-50/50 font-bold'
+              : 'text-gray-400 font-medium'
+              }`}
+          >
+            <FolderIcon size={20} />
+            <span className="text-xs">Rejected</span>
+          </button>
+
+          <button
+            onClick={handleResumeClick}
+            className="flex flex-col items-center gap-1 p-2 text-gray-400 font-medium rounded-xl transition-all duration-200 flex-1 max-w-[120px]"
+          >
+            <FileText size={20} />
+            <span className="text-xs">Résumé</span>
+          </button>
+        </div>
+      )}
 
       <style dangerouslySetInnerHTML={{
         __html: `

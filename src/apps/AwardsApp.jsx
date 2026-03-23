@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
+import { useWindowSize } from '../hooks/useWindowSize';
 
 const renderDescriptionWithLinks = (text) => {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -27,7 +28,7 @@ const renderDescriptionWithLinks = (text) => {
   });
 };
 
-const AwardCard = ({ award, index }) => {
+const AwardCard = ({ award, index, isMobile }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -39,11 +40,11 @@ const AwardCard = ({ award, index }) => {
     >
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left bg-white/70 backdrop-blur-lg rounded-[2.5rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 hover:scale-[1.01] active:scale-[0.99] flex flex-col cursor-pointer group focus:outline-none focus:ring-2 focus:ring-yellow-500/20"
+        className={`w-full text-left bg-white/70 backdrop-blur-lg ${isMobile ? 'rounded-[1.5rem]' : 'rounded-[2.5rem]'} overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 hover:scale-[1.01] active:scale-[0.99] flex flex-col cursor-pointer group focus:outline-none focus:ring-2 focus:ring-yellow-500/20`}
         aria-expanded={isExpanded}
       >
         {/* Award Image */}
-        <div className="w-full h-64 bg-gray-100 relative overflow-hidden">
+        <div className={`w-full ${isMobile ? 'h-48' : 'h-64'} bg-gray-100 relative overflow-hidden`}>
           <img
             src={award.image}
             alt={award.title}
@@ -53,16 +54,16 @@ const AwardCard = ({ award, index }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-40"></div>
         </div>
 
-        <div className="p-8 pb-6 flex items-center justify-between">
+        <div className={`${isMobile ? 'p-6' : 'p-8'} pb-6 flex items-center justify-between`}>
           <div className="flex-1 min-w-0 pr-4">
-            <h3 className="text-3xl font-bold text-gray-900 tracking-tight mb-2 group-hover:text-[#B38728] transition-colors">{award.title}</h3>
-            <p className="text-gray-500 text-lg font-medium tracking-wide">
+            <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-gray-900 tracking-tight mb-2 group-hover:text-[#B38728] transition-colors`}>{award.title}</h3>
+            <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-gray-500 font-medium tracking-wide`}>
               {award.year}
             </p>
           </div>
 
-          <div className="p-4 bg-gray-50 rounded-full group-hover:bg-[#FCF6BA]/30 transition-colors shadow-sm">
-            {isExpanded ? <ChevronDown size={28} className="text-[#B38728]" /> : <ChevronRight size={28} className="text-[#B38728]" />}
+          <div className={`${isMobile ? 'p-2' : 'p-4'} bg-gray-50 rounded-full group-hover:bg-[#FCF6BA]/30 transition-colors shadow-sm`}>
+            {isExpanded ? <ChevronDown size={isMobile ? 20 : 28} className="text-[#B38728]" /> : <ChevronRight size={isMobile ? 20 : 28} className="text-[#B38728]" />}
           </div>
         </div>
 
@@ -79,8 +80,8 @@ const AwardCard = ({ award, index }) => {
               transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
               className="overflow-hidden w-full"
             >
-              <div className="px-8 pb-8">
-                <div className="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 text-gray-700 text-lg leading-relaxed font-light shadow-inner whitespace-pre-wrap translate-z-0">
+              <div className={`${isMobile ? 'px-4' : 'px-8'} pb-8`}>
+                <div className={`${isMobile ? 'p-4 rounded-[1rem] text-sm' : 'p-8 rounded-[2rem] text-lg'} bg-gray-50/50 border border-gray-100 text-gray-700 leading-relaxed font-light shadow-inner whitespace-pre-wrap translate-z-0`}>
                   {renderDescriptionWithLinks(award.description)}
                 </div>
               </div>
@@ -92,8 +93,10 @@ const AwardCard = ({ award, index }) => {
   );
 };
 
-export default function AwardsApp() {
+export default function AwardsApp({ onClose }) {
   const [init, setInit] = useState(false);
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -176,34 +179,55 @@ export default function AwardsApp() {
   };
 
   return (
-    <div className="w-full h-full bg-[#f5f5f7] flex flex-col p-8 overflow-y-auto pt-24 text-gray-900 pb-32 overscroll-contain will-change-scroll relative">
+    <div className={`w-full h-full bg-[#f5f5f7] flex flex-col ${isMobile ? 'p-4 pt-6 pb-20' : 'p-8 pt-24 pb-32'} overflow-y-auto text-gray-900 overscroll-contain will-change-scroll relative`}>
       {init && (
         <Particles id="tsparticles" options={particlesOptions} />
       )}
 
-      <div className="max-w-3xl mx-auto w-full relative z-10">
-        <header className="mb-14">
+      {/* Back Button */}
+      {isMobile && (
+        <div className="fixed top-0 left-0 right-0 p-4 bg-[#f5f5f7]/80 backdrop-blur-md z-[100] border-b border-gray-200/50 flex items-center gap-4">
+          <button
+            className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1"
+            onClick={onClose}
+          >
+            <span>&lt; Back</span>
+          </button>
+          <span className="font-bold text-gray-900">Awards</span>
+        </div>
+      )}
+
+      <div className={`max-w-3xl mx-auto w-full relative z-10 ${isMobile ? 'pt-12' : ''}`}>
+        {!isMobile && (
+          <button
+            className="absolute -top-16 -left-4 text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1 transition-all hover:translate-x-[-4px]"
+            onClick={onClose}
+          >
+            <span>&lt; Back</span>
+          </button>
+        )}
+        <header className={`${isMobile ? 'mb-8' : 'mb-14'} text-left`}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-4"
+            className="mb-4 text-left"
           >
-            <h1 className="text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-[#BF953F] via-[#8A6623] to-[#BF953F] bg-clip-text text-transparent">
+            <h1 className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-extrabold tracking-tighter bg-gradient-to-r from-[#BF953F] via-[#8A6623] to-[#BF953F] bg-clip-text text-transparent`}>
               Honors & Awards
             </h1>
           </motion.div>
-          <p className="text-gray-400 text-xl ml-1 font-medium tracking-wide">Some of my proudest accomplishments.</p>
+          <p className={`text-gray-400 ${isMobile ? 'text-lg' : 'text-xl'} ml-1 font-medium tracking-wide`}>Some of my proudest accomplishments.</p>
         </header>
 
         <section className="mb-20">
-          <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#B38728]/60 mb-8 ml-2">Featured Awards</h2>
+          <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#B38728]/60 mb-8 ml-2 text-left">Featured Awards</h2>
           {featuredAwards.map((award, index) => (
-            <AwardCard key={award.id} award={award} index={index} />
+            <AwardCard key={award.id} award={award} index={index} isMobile={isMobile} />
           ))}
         </section>
 
         <section>
-          <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#B38728]/60 mb-8 ml-2">Other Recognitions</h2>
+          <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#B38728]/60 mb-8 ml-2 text-left">Other Recognitions</h2>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -213,13 +237,13 @@ export default function AwardsApp() {
             {otherAwards.map((award, index) => (
               <div
                 key={award.id}
-                className={`p-7 px-10 flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== otherAwards.length - 1 ? 'border-b border-gray-100' : ''
+                className={`p-5 ${isMobile ? 'px-6' : 'px-10'} flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== otherAwards.length - 1 ? 'border-b border-gray-100' : ''
                   }`}
               >
-                <div>
-                  <h4 className="text-xl font-semibold text-gray-900 group-hover:text-[#B38728] transition-colors">{award.title}</h4>
+                <div className="text-left">
+                  <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-semibold text-gray-900 group-hover:text-[#B38728] transition-colors leading-tight`}>{award.title}</h4>
                 </div>
-                <span className="text-sm font-bold tabular-nums text-gray-300 tracking-widest">{award.year}</span>
+                <span className={`${isMobile ? 'text-xs' : 'text-sm'} font-bold tabular-nums text-gray-300 tracking-widest ml-4 shrink-0`}>{award.year}</span>
               </div>
             ))}
           </motion.div>

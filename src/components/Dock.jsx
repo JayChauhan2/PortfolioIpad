@@ -1,6 +1,9 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 export default function Dock() {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   const dockItems = [
     {
       name: 'LinkedIn',
@@ -18,19 +21,19 @@ export default function Dock() {
 
   return (
     <motion.div 
-      className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-50"
+      className={`absolute ${isMobile ? 'bottom-2' : 'bottom-4'} left-1/2 transform -translate-x-1/2 z-50`}
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.6, ease: 'easeOut' }}
     >
-      <div className="flex gap-5 px-[20px] py-[16px] rounded-[2rem] dock-glass before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/30 before:to-transparent before:rounded-[2rem] before:-z-10">
-        {dockItems.map((item) => <DockItem key={item.name} item={item} />)}
+      <div className={`flex ${isMobile ? 'gap-3 px-3 py-3' : 'gap-5 px-[20px] py-[16px]'} rounded-[2rem] dock-glass before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/30 before:to-transparent before:rounded-[2rem] before:-z-10`}>
+        {dockItems.map((item) => <DockItem key={item.name} item={item} isMobile={isMobile} />)}
       </div>
     </motion.div>
   );
 }
 
-function DockItem({ item }) {
+function DockItem({ item, isMobile }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -59,7 +62,7 @@ function DockItem({ item }) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className={`w-[60px] h-[60px] md:w-[68px] md:h-[68px] rounded-[22.5%] flex items-center justify-center shadow-md transition-shadow duration-300 cursor-pointer z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${item.bg}`}
+        className={`${isMobile ? 'w-[52px] h-[52px]' : 'w-[60px] h-[60px] md:w-[68px] md:h-[68px]'} rounded-[22.5%] flex items-center justify-center shadow-md transition-shadow duration-300 cursor-pointer z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${item.bg}`}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         whileHover={{ 

@@ -1,4 +1,5 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -75,9 +76,12 @@ function AppIcon({ app, onOpenApp }) {
 }
 
 export default function HomeScreen({ apps, onOpenApp, currentApp }) {
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
+
   return (
     <motion.div 
-      className="grid grid-cols-4 gap-6 gap-y-8 mt-12 w-full max-w-3xl mx-auto z-10 px-4"
+      className={`grid ${isMobile ? 'grid-cols-3' : 'grid-cols-4'} ${isMobile ? 'gap-4 gap-y-6 mt-6' : 'gap-6 gap-y-8 mt-12'} w-full max-w-3xl mx-auto z-10 px-4`}
       variants={containerVariants}
       initial="hidden"
       animate="show"
