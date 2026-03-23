@@ -186,7 +186,7 @@ export default function AwardsApp({ onClose }) {
 
       {/* Back Button */}
       {isMobile && (
-        <div className="fixed top-0 left-0 right-0 p-4 bg-[#f5f5f7]/80 backdrop-blur-md z-[100] border-b border-gray-200/50 flex items-center gap-4">
+        <div className="sticky top-0 left-0 right-0 p-4 bg-[#f5f5f7]/80 backdrop-blur-md z-[100] border-b border-gray-200/50 flex items-center gap-4 -mt-6 -mx-4 mb-6">
           <button
             className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1"
             onClick={onClose}
