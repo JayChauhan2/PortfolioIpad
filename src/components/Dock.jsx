@@ -16,6 +16,12 @@ export default function Dock() {
       icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5b/c6/e3/5bc6e33d-8636-25c4-a796-5946378e2bff/AppIcon-0-0-1x_U007epad-0-1-P3-85-220.png/512x512bb.jpg" alt="GitHub" className="w-full h-full object-cover rounded-[22.5%]" />,
       url: 'https://github.com/JayChauhan2',
       bg: 'bg-transparent',
+    },
+    {
+      name: 'Reading List',
+      icon: <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/fc/29/87/fc29870e-93f7-1c92-9805-c21f1679f245/books-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg" alt="Reading List" className="w-full h-full object-cover rounded-[22.5%]" />,
+      url: 'https://docs.google.com/spreadsheets/d/1K3BpXbMrLDZ1ZfkbYF2ZK5NAR457j4kKxlnvvzRWOQ0/edit?usp=sharing',
+      bg: 'bg-transparent',
     }
   ];
 
