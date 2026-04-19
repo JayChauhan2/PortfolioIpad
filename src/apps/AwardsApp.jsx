@@ -179,14 +179,14 @@ export default function AwardsApp({ onClose }) {
   };
 
   return (
-    <div className={`w-full h-full bg-[#f5f5f7] flex flex-col ${isMobile ? 'p-4 pt-6 pb-20' : 'p-8 pt-24 pb-32'} overflow-y-auto text-gray-900 overscroll-contain will-change-scroll relative`}>
+    <div className={`w-full h-full bg-[#f5f5f7] flex flex-col ${isMobile ? 'p-4 pt-0 pb-20' : 'p-8 pt-24 pb-32'} overflow-y-auto text-gray-900 overscroll-contain will-change-scroll relative`}>
       {init && (
         <Particles id="tsparticles" options={particlesOptions} />
       )}
 
       {/* Back Button */}
       {isMobile && (
-        <div className="sticky top-0 left-0 right-0 p-4 bg-[#f5f5f7]/80 backdrop-blur-md z-[100] border-b border-gray-200/50 flex items-center gap-4 -mt-6 -mx-4 mb-6">
+        <div className="sticky top-0 left-0 right-0 p-4 bg-[#f5f5f7]/80 backdrop-blur-md z-[100] border-b border-gray-200/50 flex items-center gap-4 -mx-4 mb-6">
           <button
             className="text-blue-500 cursor-pointer font-medium text-lg flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded px-1"
             onClick={onClose}

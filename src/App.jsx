@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Image as ImageIcon, Users, LayoutGrid, Folder, Trophy } from 'lucide-react';
 import IPadFrame from './components/IPadFrame';
+import { useWindowSize } from './hooks/useWindowSize';
 import StatusBar from './components/StatusBar';
 import LockScreen from './components/LockScreen';
 import Dock from './components/Dock';
@@ -37,6 +38,8 @@ const APPS = [
 export default function App() {
   const [isLocked, setIsLocked] = useState(true);
   const [currentApp, setCurrentApp] = useState(null);
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
 
   const handleOpenApp = (appId) => {
     setCurrentApp(appId);
@@ -57,16 +60,17 @@ export default function App() {
   return (
     <div
       className="w-full h-screen flex items-center justify-center relative overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: "url('https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&w=2000')" }}
+      style={!isMobile ? { backgroundImage: "url('https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg?auto=compress&cs=tinysrgb&w=2000')" } : { backgroundColor: '#000' }}
     >
-      {/* Subdued shadow overlay to sell the realism of the table surface */}
-      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+      {/* Subdued shadow overlay to sell the realism of the table surface — desktop only */}
+      {!isMobile && <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>}
 
       <IPadFrame onHomeClick={handleHomeButton}>
-        <StatusBar theme={statusTheme} />
-
-        {/* Subtle Status Bar Gradient for readability */}
-        <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-40"></div>
+        {/* Status bar + gradient — iPad frame only, not shown on mobile */}
+        {!isMobile && <StatusBar theme={statusTheme} />}
+        {!isMobile && (
+          <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-40" />
+        )}
 
         <AnimatePresence>
           {!isLocked && (
@@ -140,7 +144,7 @@ export default function App() {
         rel="noopener noreferrer"
         className="fixed bottom-4 right-6 text-[11px] text-white/80 hover:text-white/100 transition-all duration-300 z-[100] font-medium tracking-tight no-underline select-none"
       >
-        Have feedback? Share it here
+        {isMobile ? 'Feedback? Click here' : 'Have feedback? Share it here'}
       </a>
     </div>
   );
