@@ -9,112 +9,46 @@ export default function OrganizationsApp({ onClose }) {
 
   const journeyOrgs = [
     {
-      id: 8,
-      name: "Virginia Drive45",
-      role: "Lead Mobile App Dev",
-      dates: "Oct 2025 - Present",
-      location: "On-site",
-      image: "https://img.icons8.com/color/512/car.png",
-      description: [
-        "Led team of developers to reduce manual driving log time by 88% using web-app.",
-        "Led development of mobile app tracking 200+ weekly logs, projected to save 780 hrs./year for parents.",
-        "Architected app for scalability to 2,500+ statewide users and 15+ Driver’s Ed teachers across VA.",
-        "Integrated stakeholder feedback from parents, students, and administrators into product design w/ a fast turnaround time of <1 month including development and customer outreach."
-      ]
-    },
-    {
-      id: 7,
-      name: "Technology Student Association",
-      role: "School Treasurer",
-      dates: "Sep 2025 - Present",
-      location: "Henrico, VA",
-      image: "https://tsaweb.org/ResourcePackages/Bootstrap5/assets/dist/img/TSA_logo.png",
-      description: [
-        "Coordinated $13K+ in comp. fees, cut processing time 25%; raised $1000+ from 8 corp. donors; led 6 state & school promo campaigns reaching 500+ people.",
-        "Worked with officer team to restructure organization leading to Top 3 chapter placement in the state with <1/2 the members of the previous year."
-      ]
-    },
-    {
-      id: 5,
-      name: "VCU - Biostatistics",
-      role: "Lead Researcher",
-      dates: "May 2025 - Nov 2025",
-      location: "Richmond, VA",
-      image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/VCU_typeface.svg",
-      description: [
-        "Head Data Science Researcher for Graduate Program Director of Biostatistics at VCU.",
-        "Executed a novel approach to create Connectome Matrix using MRI scans with MrTrix3 software.",
-        "Self-directed research on Duchenne Muscular Dystrophy and reported findings to director.",
-        "Used UNIX filesystem and Mac Terminal to execute FSL and FreeSurfer commands for preprocessing files (improving signal-to-noise ratio by 30%), cortical reconstruction (w/ <0.2mm accuracy) and volumetric segmentation (w/ >75% accuracy).",
-        "Presented complex results weekly, demonstrating ability to translate technical insights for decision-making."
-      ]
-    },
-    {
-      id: 4,
+      id: 1,
       name: "Camera Check Out",
-      role: "Lead Automation Dev",
-      dates: "Feb 2025 - Oct 2025",
-      location: "Henrico, VA",
+      role: "Lead Automation Software Developer",
+      dates: "Feb 2025 – Oct 2025",
+      location: "Richmond, VA",
       image: "https://img.icons8.com/color/512/compact-camera.png",
       description: [
-        "Primary back-end developer for app serving 90+/week customers & lead comms. teacher.",
-        "Automated system for head comms teacher to track ~70/wk. student logs for lending class eqpt., saving 15K+ dollars in missing cameras, lenses, and hard drives.",
-        "Developed 300+ line Flask application with Bootstrap (front-end) & PostgreSQL database to sync ~150 IDs with Google Sheet cells using a Google Cloud REST API.",
-        "Optimized transaction workflows, saving 30 seconds per operation and increasing overall productivity by 20% (~16 hours/month).",
-        "Scaled platform for potential expansion to 1,000+ users across multiple county high schools, enabling broader impact and adoption."
-      ]
-    },
-    {
-      id: 6,
-      name: "FORTYTWO LABS",
-      role: "Job Shadow/Intern",
-      dates: "Jun 2025 - Jul 2025",
-      location: "On-site",
-      image: "https://static.wixstatic.com/media/061147_75bc500a62fd477cac1c5c0b7825cc6c~mv2.png/v1/crop/x_0,y_24,w_387,h_145/fill/w_211,h_79,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo.png",
-      description: [
-        "“Most startups fail in the first five years.” That’s what Nilesh Dhande, founder-CEO of Fortytwo Labs, told me as I shadowed him last summer.",
-        "In conversations about his quantum-safe products, I gained countless insights from Dhande and other executives.",
-        "Learned that true innovation comes from Zero-to-One thinking."
-      ]
-    },
-    {
-      id: 3,
-      name: "Technology Student Association",
-      role: "School Secretary",
-      dates: "Oct 2024 - Sep 2025",
-      location: "Part-time",
-      image: "https://tsaweb.org/ResourcePackages/Bootstrap5/assets/dist/img/TSA_logo.png",
-      description: [
-        "Assistant to the chapter officers in managing membership and records.",
-        "Streamlined communication processes for a chapter of 50+ members."
+        "Primary full-stack developer for app serving 90+ customers/week.",
+        "Automated student lending process to save $15K+ in missing cameras, lenses, and hard drives.",
+        "Developed a 300+ line Flask application with Bootstrap (front-end) and PostgreSQL, syncing ∼150 IDs with Google Sheets via a Google Cloud REST API.",
+        "Optimized transaction workflows, saving 30 seconds per operation and increasing overall productivity by 20% (16 hrs/month).",
+        "Architected platform for expansion to 1,000+ users across multiple county high schools, resulting in county news feature."
       ]
     },
     {
       id: 2,
-      name: "NASA Space Grant",
-      role: "Intern",
-      dates: "Oct 2023 - Mar 2024",
-      location: "Remote",
-      image: "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg",
+      name: "Virginia Commonwealth University (VCU)",
+      role: "Biostatistics Researcher",
+      dates: "May 2025 – Nov 2025",
+      location: "Richmond, VA",
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/VCU_typeface.svg",
       description: [
-        "Selected to the Virginia Space Coast Scholars program, learned NASA mission design and Earth science technologies.",
-        "Created an original technical mission report about reducing CO2 emissions using scientific balloons.",
-        "Developed research skills, report writing, and mission architecture design."
+        "Data Science Researcher for the Graduate Program Director of Biostatistics at VCU.",
+        "Executed a novel approach to create a Connectome Matrix using MRI scans with MRtrix3 software.",
+        "Used UNIX filesystem and Mac Terminal to run FSL and FreeSurfer commands for preprocessing (SNR +30%), cortical reconstruction (<0.2mm accuracy), and volumetric segmentation (>75% accuracy).",
+        "Conducted self-directed research on Duchenne Muscular Dystrophy and reported findings to the program director."
       ]
     },
     {
-      id: 1,
-      name: "VCU - College of Engineering",
-      role: "Student Researcher",
+      id: 3,
+      name: "VCU Engineering – STARS Program",
+      role: "Data Science Researcher",
       dates: "Jul 2023",
       location: "Richmond, VA",
       image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/VCU_typeface.svg",
       description: [
-        "Analyzed 1000+ line flood data to identify correlations between precipitation levels and household size.",
-        "Utilized regression analysis for proposing strategies to improve climate resilience in Virginia.",
-        "Applied data visualization techniques in Alteryx & learned basics of data analysis visualization.",
+        "Selected as 1 of 34 students in the competitive Supporting Tech Achievement for Richmond Students (STARS) engineering program.",
+        "Applied regression analysis on 1,000+ point flood dataset to identify correlations between precipitation and climate resilience per household in Virginia.",
         "Led development and presentation of findings to 30+ audience members and judges.",
-        "Communicated weekly with mentor & peers about developments, leading to news-article feature by VCU."
+        "Applied data visualization in Alteryx; communicated weekly with mentor, leading to a news feature."
       ]
     }
   ];
