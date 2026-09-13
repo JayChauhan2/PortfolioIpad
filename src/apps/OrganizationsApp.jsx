@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { FileText, ExternalLink, MapPin, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
 import { useWindowSize } from '../hooks/useWindowSize';
 
 export default function OrganizationsApp({ onClose }) {
   const [expandedId, setExpandedId] = useState(null);
   const { width } = useWindowSize();
   const isMobile = width < 768;
-
-  const resumeLink = "https://docs.google.com/document/d/1jos1zdzfCV9BhdBBNIXAm29DDxN1-hkT/edit?usp=sharing&ouid=112197956071955748407&rtpof=true&sd=true";
 
   const journeyOrgs = [
     {
@@ -125,10 +123,6 @@ export default function OrganizationsApp({ onClose }) {
     setExpandedId(expandedId === id ? null : id);
   };
 
-  const handleResumeClick = () => {
-    window.open(resumeLink, '_blank');
-  };
-
   return (
     <div className="w-full h-full flex flex-col bg-gray-50 text-black font-sans">
       {/* Top Navigation Bar */}
@@ -149,7 +143,7 @@ export default function OrganizationsApp({ onClose }) {
       <div className={`w-full flex-1 flex overflow-hidden ${isMobile ? 'flex-col' : ''}`}>
         {/* Sidebar */}
         {!isMobile && (
-          <aside className="w-64 border-r border-gray-200 bg-gray-50/50 p-6 flex flex-col justify-between h-full">
+          <aside className="w-64 border-r border-gray-200 bg-gray-50/50 p-6 flex flex-col h-full">
           <div>
             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 px-2">Locations</h3>
             <nav className="space-y-2">
@@ -160,24 +154,6 @@ export default function OrganizationsApp({ onClose }) {
                 <span className="text-lg">Journey</span>
               </button>
             </nav>
-          </div>
-
-          <div className="pt-6 border-t border-gray-200">
-            <button
-              onClick={handleResumeClick}
-              className="w-full flex items-center justify-between group px-4 py-4 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all duration-300"
-            >
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 text-blue-500 rounded-lg group-hover:bg-blue-100 transition-colors">
-                  <FileText size={22} />
-                </div>
-                <div className="text-left">
-                  <p className="text-lg font-bold text-gray-900">Résumé</p>
-                  <p className="text-sm text-gray-400 font-medium">External Link</p>
-                </div>
-              </div>
-              <ExternalLink size={16} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
-            </button>
           </div>
         </aside>
         )}
@@ -253,26 +229,6 @@ export default function OrganizationsApp({ onClose }) {
           </div>
         </main>
       </div>
-
-      {/* Mobile Bottom Navigation Bar */}
-      {isMobile && (
-        <div className="flex items-center justify-around p-3 bg-white border-t border-gray-200 sticky bottom-0 z-30 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
-          <button
-            className="flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 flex-1 max-w-[120px] text-blue-600 bg-blue-50/50 font-bold"
-          >
-            <Briefcase size={20} />
-            <span className="text-xs">Journey</span>
-          </button>
-
-          <button
-            onClick={handleResumeClick}
-            className="flex flex-col items-center gap-1 p-2 text-gray-400 font-medium rounded-xl transition-all duration-200 flex-1 max-w-[120px]"
-          >
-            <FileText size={20} />
-            <span className="text-xs">Résumé</span>
-          </button>
-        </div>
-      )}
 
       <style dangerouslySetInnerHTML={{
         __html: `
