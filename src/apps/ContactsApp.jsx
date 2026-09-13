@@ -8,7 +8,7 @@ export default function ContactsApp({ onClose }) {
   const isMobile = width < 768;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('Jayschauhan3@gmail.com');
+    navigator.clipboard.writeText('jayc3@illinois.edu');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -41,7 +41,7 @@ export default function ContactsApp({ onClose }) {
             <div className="flex-1">
               <p className="text-sm font-medium text-gray-500">email</p>
               <div className="flex items-center gap-2">
-                <p className="text-blue-500">Jayschauhan3@gmail.com</p>
+                <p className="text-blue-500">jayc3@illinois.edu</p>
                 <button
                   onClick={handleCopy}
                   className="p-1.5 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all active:scale-90 cursor-pointer flex items-center justify-center"
@@ -63,7 +63,7 @@ export default function ContactsApp({ onClose }) {
             <GraduationCap size={20} className="text-gray-400 mt-1 shrink-0" />
             <div>
               <p className="text-sm font-medium">education</p>
-              <p className="leading-relaxed">Center for Information Technology at Deep Run High School</p>
+              <p className="leading-relaxed">UIUC</p>
             </div>
           </div>
           <div className="p-4 flex items-start gap-3">
