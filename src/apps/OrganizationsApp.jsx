@@ -38,6 +38,19 @@ export default function OrganizationsApp({ onClose }) {
       ]
     },
     {
+      id: 4,
+      name: "FORTYTWO LABS",
+      role: "Job Shadow/Intern",
+      dates: "Jun 2025 – Jul 2025",
+      location: "On-site",
+      image: "https://static.wixstatic.com/media/061147_75bc500a62fd477cac1c5c0b7825cc6c~mv2.png/v1/crop/x_0,y_24,w_387,h_145/fill/w_211,h_79,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo.png",
+      description: [
+        "“Most startups fail in the first five years.” That’s what Nilesh Dhande, founder-CEO of Fortytwo Labs, told me as I shadowed him last summer.",
+        "In conversations about his quantum-safe products, I gained countless insights from Dhande and other executives.",
+        "Learned that true innovation comes from Zero-to-One thinking."
+      ]
+    },
+    {
       id: 3,
       name: "VCU Engineering – STARS Program",
       role: "Data Science Researcher",
