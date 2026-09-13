@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { Folder as FolderIcon, FileText, ExternalLink, MapPin, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
+import { FileText, ExternalLink, MapPin, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
 import { useWindowSize } from '../hooks/useWindowSize';
 
 export default function OrganizationsApp({ onClose }) {
-  const [activeView, setActiveView] = useState('accepted');
   const [expandedId, setExpandedId] = useState(null);
   const { width } = useWindowSize();
   const isMobile = width < 768;
 
   const resumeLink = "https://docs.google.com/document/d/1jos1zdzfCV9BhdBBNIXAm29DDxN1-hkT/edit?usp=sharing&ouid=112197956071955748407&rtpof=true&sd=true";
 
-  const acceptedOrgs = [
+  const journeyOrgs = [
     {
       id: 8,
       name: "Virginia Drive45",
@@ -122,18 +121,6 @@ export default function OrganizationsApp({ onClose }) {
     }
   ];
 
-  const rejectedOrgs = [
-    { id: 108, name: "Meritocracy Fellowship", image: "https://logo.clearbit.com/sparc.camp" },
-    { id: 101, name: "SPARC", image: "https://logo.clearbit.com/sparc.camp" },
-    { id: 105, name: "Artifact Accelerator (Founders Inc.)", image: "https://logo.clearbit.com/f.inc" },
-    { id: 104, name: "MIT Blueprint", image: "https://logo.clearbit.com/hackmit.org" },
-    { id: 102, name: "Rockefeller University SSRP", image: "https://logo.clearbit.com/rockefeller.edu" },
-    { id: 106, name: "MIT", image: "https://logo.clearbit.com/mit.edu" },
-    { id: 103, name: "University of Pennsylvania", image: "https://logo.clearbit.com/upenn.edu" },
-    { id: 107, name: "Carnegie Mellon", image: "https://logo.clearbit.com/cmu.edu" },
-    { id: 109, name: "Georgia Tech", image: "https://logo.clearbit.com/cmu.edu" },
-  ];
-
   const toggleAccordion = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
@@ -154,7 +141,7 @@ export default function OrganizationsApp({ onClose }) {
             <span>&lt; Back</span>
           </button>
           <h2 className="font-bold text-xl tracking-tight text-gray-900">
-            {activeView === 'accepted' ? 'Experience' : 'Rejected Applications'}
+            Experience
           </h2>
         </div>
       </div>
@@ -167,25 +154,10 @@ export default function OrganizationsApp({ onClose }) {
             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 px-2">Locations</h3>
             <nav className="space-y-2">
               <button
-                onClick={() => setActiveView('accepted')}
-                className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${activeView === 'accepted'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-100 font-bold'
-                  : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
-                  }`}
+                className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 bg-blue-600 text-white shadow-md shadow-blue-100 font-bold"
               >
                 <Briefcase size={20} />
-                <span className="text-lg">Accepted</span>
-              </button>
-
-              <button
-                onClick={() => setActiveView('rejected')}
-                className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${activeView === 'rejected'
-                  ? 'bg-red-600 text-white shadow-md shadow-red-100 font-bold'
-                  : 'text-gray-600 hover:bg-gray-200/50 font-semibold'
-                  }`}
-              >
-                <FolderIcon size={20} />
-                <span className="text-lg">Rejected</span>
+                <span className="text-lg">Journey</span>
               </button>
             </nav>
           </div>
@@ -212,96 +184,73 @@ export default function OrganizationsApp({ onClose }) {
 
         {/* Main Content Area */}
         <main className="flex-1 bg-white overflow-y-auto custom-scrollbar">
-          {activeView === 'accepted' ? (
-            <div className={`px-8 ${isMobile ? 'pt-8' : 'pt-16'} max-w-3xl mx-auto mb-20`}>
-              <div className="mb-12 text-left">
-                <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-black text-gray-900 mb-4 tracking-tight`}>Experience Journey</h1>
-                <p className="text-xl text-gray-500 font-medium leading-relaxed">
-                  I love fast-paced environments and am looking to challenge myself, always.
-                </p>
-              </div>
+          <div className={`px-8 ${isMobile ? 'pt-8' : 'pt-16'} max-w-3xl mx-auto mb-20`}>
+            <div className="mb-12 text-left">
+              <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-black text-gray-900 mb-4 tracking-tight`}>Journey</h1>
+              <p className="text-xl text-gray-500 font-medium leading-relaxed">
+                I love fast-paced environments and am looking to challenge myself, always.
+              </p>
+            </div>
 
-              {/* Vertical Timeline */}
-              <div className={`relative ${isMobile ? 'pl-4' : 'pl-10'}`}>
-                {/* Vertical Line */}
-                <div className={`absolute ${isMobile ? 'left-1' : 'left-4'} top-0 bottom-0 w-1 bg-gray-50`}></div>
+            {/* Vertical Timeline */}
+            <div className={`relative ${isMobile ? 'pl-4' : 'pl-10'}`}>
+              {/* Vertical Line */}
+              <div className={`absolute ${isMobile ? 'left-1' : 'left-4'} top-0 bottom-0 w-1 bg-gray-50`}></div>
 
-                <div className="space-y-8">
-                  {acceptedOrgs.map((org) => (
-                    <div key={org.id} className="relative">
-                      {/* Timeline Dot */}
-                      <div className={`absolute ${isMobile ? '-left-[20px]' : '-left-[32px]'} top-9 w-4 h-4 rounded-full bg-gray-300 border-4 border-white z-10 shadow-sm`}></div>
+              <div className="space-y-8">
+                {journeyOrgs.map((org) => (
+                  <div key={org.id} className="relative">
+                    {/* Timeline Dot */}
+                    <div className={`absolute ${isMobile ? '-left-[20px]' : '-left-[32px]'} top-9 w-4 h-4 rounded-full bg-gray-300 border-4 border-white z-10 shadow-sm`}></div>
 
-                      {/* Experience Card */}
-                      <div
-                        onClick={() => toggleAccordion(org.id)}
-                        className={`cursor-pointer bg-white ${isMobile ? 'p-4' : 'p-6'} rounded-2xl border border-gray-100 transition-all duration-300 hover:shadow-lg ${expandedId === org.id ? 'shadow-md border-blue-100' : ''}`}
-                      >
-                        <div className="flex items-start justify-between gap-4">
-                          <div className={`flex ${isMobile ? 'flex-col' : 'items-center'} gap-4 md:gap-6`}>
-                            <div className={`${isMobile ? 'w-12 h-12' : 'w-16 h-16'} flex-shrink-0 flex items-center justify-center p-1`}>
-                              <img
-                                src={org.image}
-                                alt={org.name}
-                                className="w-full h-full object-contain transition-all"
-                                onError={(e) => { e.target.src = `https://via.placeholder.com/150/f1f5f9/64748b?text=${org.name[0]}`; }}
-                              />
-                            </div>
-                            <div className="text-left">
-                              <h3 className="font-bold text-gray-900 text-lg leading-tight mb-1">{org.name}</h3>
-                              <p className="text-blue-600 text-sm font-bold uppercase tracking-wider mb-2">{org.role}</p>
-                              <div className={`flex ${isMobile ? 'flex-col gap-1' : 'gap-4'} text-xs text-gray-400 font-bold uppercase`}>
-                                <span className="flex items-center gap-1.5"><Calendar size={12} className="text-gray-300" /> {org.dates}</span>
-                                <span className="flex items-center gap-1.5"><MapPin size={12} className="text-gray-300" /> {org.location}</span>
-                              </div>
-                            </div>
+                    {/* Experience Card */}
+                    <div
+                      onClick={() => toggleAccordion(org.id)}
+                      className={`cursor-pointer bg-white ${isMobile ? 'p-4' : 'p-6'} rounded-2xl border border-gray-100 transition-all duration-300 hover:shadow-lg ${expandedId === org.id ? 'shadow-md border-blue-100' : ''}`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className={`flex ${isMobile ? 'flex-col' : 'items-center'} gap-4 md:gap-6`}>
+                          <div className={`${isMobile ? 'w-12 h-12' : 'w-16 h-16'} flex-shrink-0 flex items-center justify-center p-1`}>
+                            <img
+                              src={org.image}
+                              alt={org.name}
+                              className="w-full h-full object-contain transition-all"
+                              onError={(e) => { e.target.src = `https://via.placeholder.com/150/f1f5f9/64748b?text=${org.name[0]}`; }}
+                            />
                           </div>
-                          <div className="text-gray-300 pt-1">
-                            {expandedId === org.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                          <div className="text-left">
+                            <h3 className="font-bold text-gray-900 text-lg leading-tight mb-1">{org.name}</h3>
+                            <p className="text-blue-600 text-sm font-bold uppercase tracking-wider mb-2">{org.role}</p>
+                            <div className={`flex ${isMobile ? 'flex-col gap-1' : 'gap-4'} text-xs text-gray-400 font-bold uppercase`}>
+                              <span className="flex items-center gap-1.5"><Calendar size={12} className="text-gray-300" /> {org.dates}</span>
+                              <span className="flex items-center gap-1.5"><MapPin size={12} className="text-gray-300" /> {org.location}</span>
+                            </div>
                           </div>
                         </div>
-
-                        {/* Collapsible Content */}
-                        {expandedId === org.id && (
-                          <div className="mt-6 pt-6 border-t border-gray-50 animate-in fade-in slide-in-from-top-2 duration-300">
-                            <ul className="space-y-3">
-                              {org.description.map((item, i) => (
-                                <li key={i} className="flex gap-3 text-sm text-gray-600 leading-relaxed font-medium">
-                                  <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
+                        <div className="text-gray-300 pt-1">
+                          {expandedId === org.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className={`p-8 max-w-2xl mx-auto flex flex-col ${isMobile ? 'pt-8' : 'pt-16'} items-start text-left`}>
-              <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-black text-gray-900 mb-4 tracking-tight`}>Rejected from</h1>
-              <p className="text-xl text-gray-500 font-medium leading-relaxed mb-12">
-                Every setback becomes a reminder to keep trying harder the next time.
-              </p>
 
-              <div className="w-full bg-white/70 backdrop-blur-lg rounded-[2rem] overflow-hidden border border-white shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
-                {rejectedOrgs.map((org, index) => (
-                  <div
-                    key={org.id}
-                    className={`${isMobile ? 'p-4 px-6' : 'p-6 px-10'} flex items-center justify-between hover:bg-gray-50 transition-colors group ${index !== rejectedOrgs.length - 1 ? 'border-b border-gray-100' : ''}`}
-                  >
-                    <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-gray-900 group-hover:text-red-600 transition-colors`}>
-                      {org.name}
-                    </h4>
-                    <div className="w-2 h-2 rounded-full bg-gray-200 group-hover:bg-red-400 group-hover:scale-125 transition-all"></div>
+                      {/* Collapsible Content */}
+                      {expandedId === org.id && (
+                        <div className="mt-6 pt-6 border-t border-gray-50 animate-in fade-in slide-in-from-top-2 duration-300">
+                          <ul className="space-y-3">
+                            {org.description.map((item, i) => (
+                              <li key={i} className="flex gap-3 text-sm text-gray-600 leading-relaxed font-medium">
+                                <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          )}
+          </div>
         </main>
       </div>
 
@@ -309,25 +258,10 @@ export default function OrganizationsApp({ onClose }) {
       {isMobile && (
         <div className="flex items-center justify-around p-3 bg-white border-t border-gray-200 sticky bottom-0 z-30 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
           <button
-            onClick={() => setActiveView('accepted')}
-            className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 flex-1 max-w-[120px] ${activeView === 'accepted'
-              ? 'text-blue-600 bg-blue-50/50 font-bold'
-              : 'text-gray-400 font-medium'
-              }`}
+            className="flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 flex-1 max-w-[120px] text-blue-600 bg-blue-50/50 font-bold"
           >
             <Briefcase size={20} />
-            <span className="text-xs">Accepted</span>
-          </button>
-
-          <button
-            onClick={() => setActiveView('rejected')}
-            className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 flex-1 max-w-[120px] ${activeView === 'rejected'
-              ? 'text-red-600 bg-red-50/50 font-bold'
-              : 'text-gray-400 font-medium'
-              }`}
-          >
-            <FolderIcon size={20} />
-            <span className="text-xs">Rejected</span>
+            <span className="text-xs">Journey</span>
           </button>
 
           <button
